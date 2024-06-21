@@ -1,7 +1,11 @@
 extends CharacterBody3D
 
+
 @export var speed = 10
 var target_velocity = Vector3.ZERO
+var dash_speed = speed * 5
+var dash_lenght = .1
+
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
@@ -20,20 +24,11 @@ func _physics_process(delta):
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
 	
-	target_velocity.x = direction.x * speed
-	target_velocity.z = direction.z * speed
-	
-	velocity = target_velocity
-	
 	if Input.is_action_just_pressed("dash"):
-		dash(target_velocity, speed)
-	else:
-		move_and_slide()
-
-func dash(direction, speed):
-	speed += 10
-	target_velocity.x = direction.x * speed
-	target_velocity.z = direction.z * speed
+		$Dash.start_dash(dash_lenght)
+	var target_speed = dash_speed if $Dash.is_dashing() else speed
+	target_velocity.x = direction.x * target_speed
+	target_velocity.z = direction.z * target_speed
 	velocity = target_velocity
 	move_and_slide()
  
