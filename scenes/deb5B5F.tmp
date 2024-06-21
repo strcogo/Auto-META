@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck4lniat7bvrw"]
+
+[ext_resource type="Material" uid="uid://kj5bujdocdwo" path="res://textures/materials/new_standard_material_3d.tres" id="1_sloa5"]
+[ext_resource type="PackedScene" uid="uid://b7i6ouohqhj2l" path="res://camera/camera.tscn" id="2_e7xil"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(5, 0.5, 5)
+material = ExtResource("1_sloa5")
+
+[node name="MoveCamera" parent="." instance=ExtResource("2_e7xil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169981, 0, 0.525379)
