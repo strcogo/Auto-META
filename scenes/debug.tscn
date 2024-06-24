@@ -29,9 +29,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12367, 0.15873, -1.25678)
 transform = Transform3D(1, 0.00011874, -1.54839e-05, 1.55017e-05, -0.00015011, 1, 0.000118738, -1, -0.000150111, 0, 5, 0)
 light_energy = 2.333
 
-[node name="Enemybase" parent="." instance=ExtResource("2_ekrrd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42295, 0, 0.850219)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_inkc8")
 navigation_layers = 15
@@ -51,3 +48,14 @@ shape = SubResource("ConvexPolygonShape3D_fsw82")
 
 [node name="Bow" parent="Weapons" instance=ExtResource("5_b00sa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52271, 0, -5.60727)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Enemybase" parent="Enemies" instance=ExtResource("2_ekrrd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42295, 0, 0.850219)
+
+[node name="Enemybase2" parent="Enemies" instance=ExtResource("2_ekrrd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37137, 0.15873, 5.88412)
+
+[node name="Enemybase3" parent="Enemies" instance=ExtResource("2_ekrrd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65333, 0.15873, 4.47092)
