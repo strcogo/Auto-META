@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ck4lniat7bvrw"]
+[gd_scene load_steps=11 format=3 uid="uid://ck4lniat7bvrw"]
 
 [ext_resource type="PackedScene" uid="uid://w21pqqhdbg4u" path="res://enemy/enemybase.tscn" id="2_ekrrd"]
 [ext_resource type="PackedScene" uid="uid://cjirmrxia1rsc" path="res://character/character.tscn" id="2_gxb1q"]
 [ext_resource type="Texture2D" uid="uid://bajnfiouem51q" path="res://textures/Dark/texture_02.png" id="3_vm6ua"]
+[ext_resource type="PackedScene" uid="uid://caoeweypfocuw" path="res://weapons/weapon pickups/sword.tscn" id="4_vvswa"]
 [ext_resource type="PackedScene" uid="uid://cfkaovhnavntw" path="res://weapons/weapon pickups/bow.tscn" id="5_b00sa"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_inkc8"]
@@ -43,6 +44,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8wyx2")
 shape = SubResource("ConvexPolygonShape3D_fsw82")
 
 [node name="Weapons" type="Node3D" parent="."]
+
+[node name="Sword" parent="Weapons" instance=ExtResource("4_vvswa")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1.26805, -4.31035)
 
 [node name="Bow" parent="Weapons" instance=ExtResource("5_b00sa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52271, 0, -5.60727)

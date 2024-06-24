@@ -9,7 +9,7 @@
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_1sj8p")
-weapon_name = "spellbook"
+weapon_name = "sword"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.640961, 0, 0, 0, 1, 0, 0.327749, 0)
