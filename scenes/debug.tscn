@@ -25,9 +25,6 @@ points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.
 transform = Transform3D(1, 0.00011874, -1.54839e-05, 1.55017e-05, -0.00015011, 1, 0.000118738, -1, -0.000150111, 0, 5, 0)
 light_energy = 2.333
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("2_gxb1q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.330647, 0, 0.474036)
-
 [node name="Enemybase" parent="." instance=ExtResource("2_ekrrd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42295, 0, 0.850219)
 
@@ -53,3 +50,6 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 
 [node name="Bow" parent="Weapons" instance=ExtResource("5_b00sa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52271, 0, -5.60727)
+
+[node name="Player" parent="." instance=ExtResource("2_gxb1q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12367, 0.15873, -1.25678)

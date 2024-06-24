@@ -32,3 +32,5 @@ func _physics_process(delta):
 	velocity = target_velocity
 	move_and_slide()
  
+func isplayer():
+	pass

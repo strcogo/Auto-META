@@ -7,3 +7,5 @@ script = ExtResource("1_4wx4l")
 weapon_name = "bow"
 activate_anim = "bow_pull"
 deactivate_anim = "bow_exit"
+attack_anim = "bow_attack"
+idle_anim = "bow_idle"
