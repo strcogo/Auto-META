@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://bv4u2esk5do41"]
+
+[ext_resource type="Script" path="res://weapons/weapon_resource.gd" id="1_047w3"]
+
+[resource]
+script = ExtResource("1_047w3")
+weapon_name = "sword"
+activate_anim = "sword_pull"
+deactivate_anim = "sword_exit"

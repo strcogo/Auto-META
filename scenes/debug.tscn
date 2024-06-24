@@ -1,12 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck4lniat7bvrw"]
+[gd_scene load_steps=11 format=3 uid="uid://ck4lniat7bvrw"]
 
-[ext_resource type="Material" uid="uid://kj5bujdocdwo" path="res://textures/materials/new_standard_material_3d.tres" id="1_sloa5"]
 [ext_resource type="PackedScene" uid="uid://w21pqqhdbg4u" path="res://enemy/enemybase.tscn" id="2_ekrrd"]
 [ext_resource type="PackedScene" uid="uid://cjirmrxia1rsc" path="res://character/character.tscn" id="2_gxb1q"]
+[ext_resource type="Texture2D" uid="uid://bajnfiouem51q" path="res://textures/Dark/texture_02.png" id="3_vm6ua"]
+[ext_resource type="PackedScene" uid="uid://caoeweypfocuw" path="res://weapons/weapon pickups/sword.tscn" id="4_vvswa"]
+[ext_resource type="PackedScene" uid="uid://cfkaovhnavntw" path="res://weapons/weapon pickups/bow.tscn" id="5_b00sa"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_inkc8"]
-vertices = PackedVector3Array(-1.85397, 0.75, -9.02719, -12.354, 0.75, 1.47281, -3.35397, 0.75, 10.7228, -2.85397, 0.75, 10.7228, 7.39603, 0.75, 0.472815, 7.39603, 0.75, -0.0271854)
-polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7kdcx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dg5so"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wyx2"]
+albedo_texture = ExtResource("3_vm6ua")
+uv1_triplanar = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fsw82"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
 
 [node name="Node3D" type="Node3D"]
 
@@ -22,11 +33,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42295, 0, 0.850219)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_inkc8")
+navigation_layers = 15
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(7.07107, 0, 7.07107, 0, 10, 0, -7.07107, 0, 7.07107, 0, 0, 0)
+physics_material_override = SubResource("PhysicsMaterial_7kdcx")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35239, 0, -1.06891)
-size = Vector3(15.558, 0.5, 13.9559)
-material = ExtResource("1_sloa5")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = SubResource("PlaneMesh_dg5so")
+surface_material_override/0 = SubResource("StandardMaterial3D_8wyx2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fsw82")
+
+[node name="Weapons" type="Node3D" parent="."]
+
+[node name="Sword" parent="Weapons" instance=ExtResource("4_vvswa")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1.26805, -4.31035)
+
+[node name="Bow" parent="Weapons" instance=ExtResource("5_b00sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52271, 0, -5.60727)

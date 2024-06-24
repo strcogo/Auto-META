@@ -1,12 +1,197 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjirmrxia1rsc"]
+[gd_scene load_steps=19 format=3 uid="uid://cjirmrxia1rsc"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_yrr8d"]
 [ext_resource type="ArrayMesh" uid="uid://yxb7n4r15s1c" path="res://character/charactercapsule.obj" id="2_1shee"]
 [ext_resource type="PackedScene" uid="uid://btv1ybdatyxy3" path="res://character/dash.tscn" id="3_gvhk6"]
+[ext_resource type="Script" path="res://weapons/weapon_manager.gd" id="4_uxrtd"]
+[ext_resource type="Resource" uid="uid://cnb1l186mmxkb" path="res://weapons/weapon resources/bow.tres" id="5_sapeu"]
+[ext_resource type="Resource" uid="uid://bv4u2esk5do41" path="res://weapons/weapon resources/sword.tres" id="5_wi5de"]
+[ext_resource type="Resource" uid="uid://bu4hhljte2wpn" path="res://weapons/weapon resources/spellbook.tres" id="6_lg7y1"]
+[ext_resource type="PackedScene" uid="uid://caoeweypfocuw" path="res://weapons/weapon pickups/sword.tscn" id="6_s4umr"]
+[ext_resource type="PackedScene" uid="uid://cfkaovhnavntw" path="res://weapons/weapon pickups/bow.tscn" id="6_wd7jx"]
+[ext_resource type="PackedScene" uid="uid://2x52xkkw7cul" path="res://weapons/weapon pickups/spellbook.tscn" id="7_nxgo0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0m21b"]
 
+[sub_resource type="Animation" id="Animation_rdk3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.2, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bow:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i76yt"]
+resource_name = "sword_exit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_omyrg"]
+resource_name = "sword_pull"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.2, 0), Vector3(0.5, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qtqgv"]
+resource_name = "bow_pull"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bow:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, -1.5708), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ljlsl"]
+resource_name = "bow_exit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b6nrw"]
+_data = {
+"RESET": SubResource("Animation_rdk3h"),
+"bow_exit": SubResource("Animation_ljlsl"),
+"bow_pull": SubResource("Animation_qtqgv"),
+"sword_exit": SubResource("Animation_i76yt"),
+"sword_pull": SubResource("Animation_omyrg")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u510i"]
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_yrr8d")
 
 [node name="Pivot" type="Node3D" parent="."]
@@ -21,11 +206,43 @@ transform = Transform3D(0.1, 0, 0, 0, 0.0671811, -0.0740723, 0, 0.0740723, 0.067
 mesh = ExtResource("2_1shee")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_0m21b")
+
+[node name="WeaponManager" type="Node3D" parent="Pivot"]
+script = ExtResource("4_uxrtd")
+_weapon_resources = Array[Resource("res://weapons/weapon_resource.gd")]([ExtResource("5_wi5de"), ExtResource("5_sapeu"), ExtResource("6_lg7y1")])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/WeaponManager"]
+libraries = {
+"": SubResource("AnimationLibrary_b6nrw")
+}
+
+[node name="Sword" parent="Pivot/WeaponManager" instance=ExtResource("6_s4umr")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, 0.2, 0)
+visible = false
+
+[node name="Bow" parent="Pivot/WeaponManager" instance=ExtResource("6_wd7jx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0, 0)
+visible = false
+
+[node name="SpellBook" parent="Pivot/WeaponManager" instance=ExtResource("7_nxgo0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+visible = false
+
+[node name="PickupArea" type="Area3D" parent="Pivot/WeaponManager"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/WeaponManager/PickupArea"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
+shape = SubResource("CylinderShape3D_u510i")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.999983, -0.0031912, 0.0049365, -0.00123413, 0.707106, 0.707107, -0.00574715, -0.707101, 0.70709, 0, 12, 10)
 
 [node name="Dash" parent="." instance=ExtResource("3_gvhk6")]
+
+[connection signal="body_entered" from="Pivot/WeaponManager/PickupArea" to="Pivot/WeaponManager" method="_on_pickup_area_body_entered"]
+[connection signal="body_exited" from="Pivot/WeaponManager/PickupArea" to="Pivot/WeaponManager" method="_on_pickup_area_body_exited"]

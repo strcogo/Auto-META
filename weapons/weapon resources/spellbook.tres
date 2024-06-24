@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://bu4hhljte2wpn"]
+
+[ext_resource type="Script" path="res://weapons/weapon_resource.gd" id="1_qb3ux"]
+
+[resource]
+script = ExtResource("1_qb3ux")
+weapon_name = "spellbook"
+activate_anim = "spellbook_pull"
+deactivate_anim = "spellbook_exit"
