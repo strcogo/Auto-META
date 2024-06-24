@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var animation_player = $AnimationPlayer as AnimationPlayer
+@onready var weapons_node = get_node("../../..").get_node("Weapons")
 
 var _in_area = false
 var _in_range_pickup = null
@@ -16,7 +17,7 @@ func _ready():
 func _physics_process(delta):
 	if(_in_area && Input.is_action_just_pressed("interact")):
 		changeWeapon(next_weapon)
-	play_atack()
+	play_attack()
 
 func Initialize():
 	for weapon in _weapon_resources:
@@ -28,11 +29,14 @@ func Initialize():
 func changeWeapon(weapon_name: String):
 	animation_player.play(current_weapon.deactivate_anim)
 	await animation_player.animation_finished
+	var dropped_weapon = current_weapon.weapon_drop.instantiate()
+	dropped_weapon.position = _in_range_pickup.position
 	_in_range_pickup.queue_free()
+	weapons_node.add_child(dropped_weapon)
 	current_weapon = weapon_list[weapon_name]
 	animation_player.play(current_weapon.activate_anim)
 
-func play_atack():
+func play_attack():
 	if Input.is_action_just_pressed("attack"):
 		animation_player.play(current_weapon.attack_anim)
 
