@@ -1,9 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://ck4lniat7bvrw"]
+[gd_scene load_steps=13 format=3 uid="uid://ck4lniat7bvrw"]
 
 [ext_resource type="PackedScene" uid="uid://w21pqqhdbg4u" path="res://enemy/enemybase.tscn" id="2_ekrrd"]
 [ext_resource type="PackedScene" uid="uid://cjirmrxia1rsc" path="res://character/character.tscn" id="2_gxb1q"]
 [ext_resource type="Texture2D" uid="uid://bajnfiouem51q" path="res://textures/Dark/texture_02.png" id="3_vm6ua"]
 [ext_resource type="PackedScene" uid="uid://cfkaovhnavntw" path="res://weapons/weapon pickups/bow.tscn" id="5_b00sa"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p80n4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vq3i"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s4rs8"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_inkc8"]
 vertices = PackedVector3Array(-13.6421, 0.5, -0.14214, -0.14214, 0.5, 13.6079, 13.6079, 0.5, 0.10786, 0.10786, 0.5, -13.6421)
@@ -28,6 +36,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12367, 0.15873, -1.25678)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0.00011874, -1.54839e-05, 1.55017e-05, -0.00015011, 1, 0.000118738, -1, -0.000150111, 0, 5, 0)
 light_energy = 2.333
+
+[node name="Void" type="StaticBody3D" parent="."]
+transform = Transform3D(141.421, 0, 141.421, 0, 200, 0, -141.421, 0, 141.421, 0, -2.34668, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Void"]
+mesh = SubResource("PlaneMesh_p80n4")
+skeleton = NodePath("../../NavigationRegion3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_4vq3i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Void"]
+shape = SubResource("ConvexPolygonShape3D_s4rs8")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_inkc8")

@@ -7,5 +7,6 @@ class_name WeaponResource
 @export var deactivate_anim: String
 @export var attack_anim: String
 @export var idle_anim: String
+@export var type: String
 @export var weapon_drop: PackedScene
 

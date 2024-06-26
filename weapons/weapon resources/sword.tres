@@ -10,4 +10,5 @@ activate_anim = "sword_pull"
 deactivate_anim = "sword_exit"
 attack_anim = "sword_attack"
 idle_anim = "sword_idle"
+type = "melee"
 weapon_drop = ExtResource("2_ho2ay")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjirmrxia1rsc"]
+[gd_scene load_steps=24 format=3 uid="uid://cjirmrxia1rsc"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_yrr8d"]
 [ext_resource type="ArrayMesh" uid="uid://yxb7n4r15s1c" path="res://character/charactercapsule.obj" id="2_1shee"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://weapons/weapon_pickup.gd" id="6_te3fk"]
 [ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="7_8xdu7"]
 [ext_resource type="PackedScene" uid="uid://chr5k8abkb8ep" path="res://weapons/weapon pickups/models/bow.glb" id="8_o3qeu"]
+[ext_resource type="Script" path="res://combat/hitbox.gd" id="8_uu3pk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0m21b"]
 
@@ -85,6 +86,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.5, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sword/HitBox/CollisionShape3D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_5g8rq"]
@@ -178,7 +191,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_e1he2"]
 resource_name = "sword_attack"
-length = 0.3
+length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -186,10 +200,10 @@ tracks/0/path = NodePath("Sword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.190119, 1.2916, -1.5708), Vector3(-0.190119, 2.61149, -1.5708)]
+"values": [Vector3(-0.190119, -0.0612047, -1.5708), Vector3(-0.190119, 3.09844, -1.5708)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -198,10 +212,22 @@ tracks/1/path = NodePath("Sword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.437861, 0.608756, 0), Vector3(0.437861, 0.608756, 0)]
+"values": [Vector3(-0.00139436, 0.608756, -0.685199), Vector3(-0.00139439, 0.608756, -0.685199)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/HitBox/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_i76yt"]
@@ -302,12 +328,19 @@ _data = {
 "sword_pull": SubResource("Animation_omyrg")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2dtwm"]
+radius = 0.206324
+height = 1.64458
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u510i"]
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_yrr8d")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999983, -0.00319121, 0.0049365, -0.00123413, 0.707106, 0.707107, -0.00574715, -0.707101, 0.707089, 0, 12, 10)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -345,7 +378,16 @@ script = ExtResource("6_te3fk")
 weapon_name = "sword"
 
 [node name="sword_model" parent="Pivot/WeaponManager/Sword" instance=ExtResource("7_8xdu7")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.2, 9.31323e-10, 3.49246e-09, 9.31323e-10, 0.2, 0, 6.75209e-09, 3.72529e-09, 0.2, 0, 0, 0)
+
+[node name="HitBox" type="Area3D" parent="Pivot/WeaponManager/Sword"]
+script = ExtResource("8_uu3pk")
+damage = 50
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/WeaponManager/Sword/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19415, 5.96046e-08)
+shape = SubResource("CapsuleShape3D_2dtwm")
+disabled = true
 
 [node name="Bow" type="StaticBody3D" parent="Pivot/WeaponManager"]
 transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0.5, 0, 0)
@@ -359,6 +401,9 @@ weapon_name = "bow"
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 skeleton = NodePath("")
 
+[node name="proj_pos" type="Marker3D" parent="Pivot/WeaponManager/Bow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.692659, 1.06035, 0.121988)
+
 [node name="PickupArea" type="Area3D" parent="Pivot/WeaponManager"]
 collision_layer = 0
 collision_mask = 8
@@ -367,8 +412,8 @@ collision_mask = 8
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
 shape = SubResource("CylinderShape3D_u510i")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.999983, -0.0031912, 0.0049365, -0.00123413, 0.707106, 0.707107, -0.00574715, -0.707101, 0.70709, 0, 12, 10)
+[node name="MouseView" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
 
 [node name="Dash" parent="." instance=ExtResource("3_gvhk6")]
 

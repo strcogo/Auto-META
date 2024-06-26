@@ -6,7 +6,6 @@ var target_velocity = Vector3.ZERO
 var dash_speed = speed * 5
 var dash_lenght = .1
 
-
 func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var lastdirection = Vector3.ZERO
@@ -24,6 +23,9 @@ func _physics_process(delta):
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
 	
+	if(Input.is_action_just_pressed("attack")):
+		$Pivot.basis = Basis.looking_at(mouse_position())
+
 	if Input.is_action_just_pressed("dash"):
 		$Dash.start_dash(dash_lenght)
 	var target_speed = dash_speed if $Dash.is_dashing() else speed
@@ -32,5 +34,15 @@ func _physics_process(delta):
 	velocity = target_velocity
 	move_and_slide()
  
-func isplayer():
-	pass
+func mouse_position():
+	var space_state = get_world_3d().direct_space_state
+	var mouse_position = get_viewport().get_mouse_position()
+	var ray_origin = $MouseView.project_ray_origin(mouse_position)
+	var ray_end = ray_origin + $MouseView.project_ray_normal(mouse_position) * 99999
+	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	var intersection = space_state.intersect_ray(query)
+	if(!intersection.is_empty()):
+		var pos = intersection["position"]
+		return Vector3(pos.x, 0, pos.z)
+
+	

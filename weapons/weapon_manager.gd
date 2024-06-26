@@ -39,6 +39,13 @@ func changeWeapon(weapon_name: String):
 func play_attack():
 	if Input.is_action_just_pressed("attack"):
 		animation_player.play(current_weapon.attack_anim)
+		await animation_player.animation_finished
+
+func shooting():
+	if(current_weapon.type == "ranged" && Input.is_action_just_pressed("attack")):
+		var proj = current_weapon.projectile.instantiate()
+		proj.position = current_weapon.shooter.position
+		proj.rotation = current_weapon.shooter.rotation
 
 func _on_pickup_area_body_entered(body):
 	_in_area = true

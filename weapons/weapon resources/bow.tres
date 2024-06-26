@@ -10,4 +10,5 @@ activate_anim = "bow_pull"
 deactivate_anim = "bow_exit"
 attack_anim = "bow_attack"
 idle_anim = "bow_idle"
+type = "ranged"
 weapon_drop = ExtResource("2_w5kro")
