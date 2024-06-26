@@ -1,12 +1,82 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2654y2pv8cak"]
+[gd_scene load_steps=13 format=3 uid="uid://c2654y2pv8cak"]
 
 [ext_resource type="Script" path="res://enemy/enemy_1 (runner)/enemy1.gd" id="1_l7jgp"]
 [ext_resource type="PackedScene" uid="uid://v1adlwqaxi3v" path="res://enemy/enemy_1 (runner)/enemy.glb" id="1_p7m2h"]
 [ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_e8hhp"]
+[ext_resource type="Script" path="res://combat/hitbox.gd" id="3_m0w77"]
+[ext_resource type="Script" path="res://combat/hurtbox.gd" id="5_x2j02"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcacr"]
+radius = 1.03542
+height = 8.62108
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ab6jh"]
 
+[sub_resource type="Animation" id="Animation_ypc8f"]
+resource_name = "hit"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/sword_model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.100123, 0.742622, -1.55343), Vector3(-0.100123, 2.75848, -1.55343)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Pivot/sword_model/HitBox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ie6en"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/sword_model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.3996, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Pivot/sword_model/HitBox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_77nqu"]
+_data = {
+"RESET": SubResource("Animation_ie6en"),
+"hit": SubResource("Animation_ypc8f")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_lg6ld"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c3p53"]
 
 [node name="Enemy1" type="CharacterBody3D"]
 script = ExtResource("1_l7jgp")
@@ -17,6 +87,15 @@ script = ExtResource("1_l7jgp")
 transform = Transform3D(0.3, 0, 0, 0, 0.0511093, 0.295614, 0, -0.295614, 0.0511093, 0.474555, 0.50912, 0.228633)
 skeleton = NodePath("../..")
 
+[node name="HitBox" type="Area3D" parent="Pivot/sword_model"]
+script = ExtResource("3_m0w77")
+damage = 25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/sword_model/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, -1.49012e-08, 0, 1, -1.19209e-07, 5.71293, -0.0216796)
+shape = SubResource("CapsuleShape3D_pcacr")
+disabled = true
+
 [node name="enemy" parent="Pivot" instance=ExtResource("1_p7m2h")]
 transform = Transform3D(0.4, 0, 0, 0, 0.35, 0, 0, 0, 0.4, 0, 0, 0)
 
@@ -26,6 +105,9 @@ shape = SubResource("CapsuleShape3D_ab6jh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../CollisionShape3D")
+libraries = {
+"": SubResource("AnimationLibrary_77nqu")
+}
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
@@ -36,6 +118,17 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
 shape = SubResource("BoxShape3D_lg6ld")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="HurtBox" type="Area3D" parent="."]
+script = ExtResource("5_x2j02")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_c3p53")
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

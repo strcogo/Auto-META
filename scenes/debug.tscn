@@ -34,7 +34,7 @@ points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12367, 0.15873, -1.25678)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0.00011874, -1.54839e-05, 1.55017e-05, -0.00015011, 1, 0.000118738, -1, -0.000150111, 0, 5, 0)
+transform = Transform3D(1, 0.00011874, -1.54839e-05, 1.55017e-05, -0.00015011, 1, 0.000118738, -1, -0.000150112, 0, 5, 0)
 light_energy = 2.333
 
 [node name="Void" type="StaticBody3D" parent="."]
@@ -71,3 +71,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52271, 0, -5.60727)
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Enemy1" parent="Enemies" instance=ExtResource("4_k6ng7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.67093)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_k6ng7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17455, 0, 2.16913)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("4_k6ng7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17043, 0, 0)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("4_k6ng7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)

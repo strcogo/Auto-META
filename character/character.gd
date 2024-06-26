@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 @export var speed = 10
+@export var life = 100
 var target_velocity = Vector3.ZERO
 var dash_speed = speed * 5
 var dash_lenght = .1
@@ -44,6 +45,11 @@ func mouse_position():
 	if(!intersection.is_empty()):
 		var pos = intersection["position"]
 		return Vector3(pos.x, 0, pos.z)
+
+func take_damage(amount: int):
+	life -= amount
+	if(life <= 0):
+		self.queue_free()
 
 func player():
 	pass	
