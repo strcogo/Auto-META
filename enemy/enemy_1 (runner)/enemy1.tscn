@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2654y2pv8cak"]
+
+[ext_resource type="Script" path="res://enemy/enemy_1 (runner)/enemy1.gd" id="1_l7jgp"]
+[ext_resource type="PackedScene" uid="uid://v1adlwqaxi3v" path="res://enemy/enemy_1 (runner)/enemy.glb" id="1_p7m2h"]
+[ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_e8hhp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ab6jh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lg6ld"]
+
+[node name="Enemy1" type="CharacterBody3D"]
+script = ExtResource("1_l7jgp")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="sword_model" parent="Pivot" instance=ExtResource("2_e8hhp")]
+transform = Transform3D(0.3, 0, 0, 0, 0.0511093, 0.295614, 0, -0.295614, 0.0511093, 0.474555, 0.50912, 0.228633)
+skeleton = NodePath("../..")
+
+[node name="enemy" parent="Pivot" instance=ExtResource("1_p7m2h")]
+transform = Transform3D(0.4, 0, 0, 0, 0.35, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.987801, 0)
+shape = SubResource("CapsuleShape3D_ab6jh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="AttackRange" type="Area3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+shape = SubResource("BoxShape3D_lg6ld")
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

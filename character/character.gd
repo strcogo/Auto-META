@@ -45,4 +45,5 @@ func mouse_position():
 		var pos = intersection["position"]
 		return Vector3(pos.x, 0, pos.z)
 
-	
+func player():
+	pass	
