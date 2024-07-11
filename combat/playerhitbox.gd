@@ -1,4 +1,4 @@
-class_name HitBox
+class_name PlayerHitBox
 extends Area3D
 
 
@@ -6,6 +6,6 @@ extends Area3D
 
 
 func _init() -> void:
-	collision_layer = 2
+	collision_layer = 4
 	collision_mask = 0
 	

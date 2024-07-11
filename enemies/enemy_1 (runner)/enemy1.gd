@@ -6,14 +6,15 @@ var accel = 10
 
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
-@onready var player = get_parent().get_parent().get_node("Player")
-
+@onready var player = get_parent().get_parent().get_parent().get_node("Player")
 
 @onready var direction = Vector3()
+@onready var animPlayer = $AnimationPlayer
 
 enum {
 	WALKING,
-	ATACKING
+	ATACKING,
+	STUNNED
 }
 
 var state = WALKING
@@ -34,27 +35,34 @@ func _physics_process(delta):
 			if($AttackCooldown.is_stopped()):
 				$AnimationPlayer.play("hit")
 				$AttackCooldown.start()
-			
-			
-		
+		STUNNED:
+			animPlayer.play("stunned")
+
+func _ready():
+	animPlayer.play("spawning")
+	await animPlayer.animation_finished
+
+
 func take_damage(amount: int):
+	velocity = (direction * -1) * 30
+	move_and_slide()
 	life -= amount
 	if(life <= 0):
-		self.queue_free()
-
-
-
-
-
-
-		
+		queue_free()
 
 
 func _on_attack_range_body_entered(body):
-	if(body.has_method("player")):
+	if(body.has_method("player")) and state != STUNNED:
 		state = ATACKING
 
 
 func _on_attack_range_body_exited(body):
-	if(body.has_method("player")):
+	if(body.has_method("player")) and state != STUNNED:
 		state = WALKING
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "hit":
+		animPlayer.play("reset")
+	if anim_name == "stunned":
+		state = WALKING
+		animPlayer.play("reset")

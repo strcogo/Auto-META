@@ -2,10 +2,16 @@ extends CharacterBody3D
 
 
 @export var speed = 10
-@export var life = 100
+@export var life = 125
 var target_velocity = Vector3.ZERO
 var dash_speed = speed * 5
 var dash_lenght = .1
+
+@onready var health_bar = $CanvasLayer/HealthBar
+
+func _ready():
+	health_bar.init_health(life)
+
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
@@ -48,8 +54,8 @@ func mouse_position():
 
 func take_damage(amount: int):
 	life -= amount
-	if(life <= 0):
-		self.queue_free()
+	health_bar._set_life(life)
+	health_bar.life = life
 
 func player():
 	pass	
