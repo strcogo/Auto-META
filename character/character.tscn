@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cjirmrxia1rsc"]
+[gd_scene load_steps=30 format=3 uid="uid://cjirmrxia1rsc"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_yrr8d"]
 [ext_resource type="ArrayMesh" uid="uid://yxb7n4r15s1c" path="res://character/charactercapsule.obj" id="2_1shee"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://chr5k8abkb8ep" path="res://weapons/weapon pickups/models/bow.glb" id="8_o3qeu"]
 [ext_resource type="Script" path="res://combat/playerhurtbox.gd" id="12_rgosn"]
 [ext_resource type="PackedScene" uid="uid://c21d6qw76v1ua" path="res://character/HealthBar.tscn" id="12_w0gaq"]
+[ext_resource type="Script" path="res://scenes/room_manager.gd" id="13_aqt04"]
+[ext_resource type="Resource" uid="uid://b0bj51aln2bax" path="res://scenes/resources/level01.tres" id="14_5vg34"]
+[ext_resource type="Resource" uid="uid://bewcfxta84r5g" path="res://scenes/resources/level02.tres" id="15_1yg5i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0m21b"]
 
@@ -436,6 +439,10 @@ script = ExtResource("12_rgosn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_cv22k")
+
+[node name="RoomManager" type="Node3D" parent="."]
+script = ExtResource("13_aqt04")
+scenes = Array[Resource("res://scenes/resources/room_resource.gd")]([ExtResource("14_5vg34"), ExtResource("15_1yg5i")])
 
 [connection signal="animation_finished" from="Pivot/WeaponManager/AnimationPlayer" to="Pivot/WeaponManager" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Pivot/WeaponManager/PickupArea" to="Pivot/WeaponManager" method="_on_pickup_area_body_entered"]

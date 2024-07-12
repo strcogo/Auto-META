@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=2 format=3 uid="uid://b0bj51aln2bax"]
+
+[ext_resource type="Script" path="res://scenes/resources/room_resource.gd" id="1_rh20q"]
+
+[resource]
+script = ExtResource("1_rh20q")
+room_id = 0
+path = "res://scenes/level01.tscn"
