@@ -32,7 +32,7 @@ func changeWeapon(weapon_name: String):
 	var dropped_weapon = current_weapon.weapon_drop.instantiate()
 	dropped_weapon.position = _in_range_pickup.position
 	_in_range_pickup.queue_free()
-	weapons_node.add_child(dropped_weapons)
+	weapons_node.add_child(dropped_weapon)
 	current_weapon = weapon_list[weapon_name]
 	animation_player.play(current_weapon.activate_anim)
 

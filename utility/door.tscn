@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj8xr10gn4lrw"]
+
+[ext_resource type="Script" path="res://utility/door.gd" id="1_57foo"]
+[ext_resource type="MeshLibrary" uid="uid://d1lw1c0k6a22o" path="res://tileset/Tileset1.tres" id="2_dwd67"]
+
+[node name="Door" type="StaticBody3D"]
+script = ExtResource("1_57foo")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_dwd67")
+cell_size = Vector3(2, 0.5, 2)
+data = {
+"cells": PackedInt32Array(131071, 65535, 2, 65536, 65535, 2)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)

@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://ubctyklsaq7j"]
+
+[ext_resource type="PackedScene" uid="uid://fhs47nerrpl3" path="res://scenes/base_level.tscn" id="1_jofxg"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_f1nl8"]
+vertices = PackedVector3Array(8.25, 1.5, -8.5, 8.5, 1.5, -6.5, 9.5, 1.5, -6.5, 9.5, 1.5, -9.5, -9.5, 1.5, -9.5, -8.25, 1.5, -8.5, 8.25, 1.5, -8.5, 9.5, 1.5, -9.5, -9.5, 1.5, 1.5, -8.5, 1.5, 1.5, -8.25, 1.5, -8.5, -9.5, 1.5, -9.5, -9.5, 1, 2.5, -9.5, 1, 5.5, -7.5, 1, 5.5, -7.25, 1, 2.25, 7.5, 1, -5.75, 7.5, 1, -7.5, -7.25, 1, -7.5, 7.5, 1, -2.25, 9.5, 1, -2.5, 9.5, 1, -5.5, 7.5, 1, -5.75, 7.5, 1, -2.25, 7.5, 1, -5.75, -7.25, 1, -7.5, -7.25, 1, 2.25, -7.25, 1, 2.25, -7.5, 1, 5.5, -7.25, 1, 7.5, 7.5, 1, 7.5, 7.5, 1, -2.25, -8.25, 1.5, 8.5, -8.5, 1.5, 6.5, -9.5, 1.5, 6.5, -9.5, 1.5, 9.5, -9.5, 1.5, 9.5, 9.5, 1.5, 9.5, 8.25, 1.5, 8.5, -8.25, 1.5, 8.5, 9.5, 1.5, -1.5, 8.5, 1.5, -1.5, 8.25, 1.5, 8.5, 9.5, 1.5, 9.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(18, 17, 16), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(30, 27, 31), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(39, 38, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 43)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kf0gl"]
+size = Vector3(2.23749, 3.43286, 4.27469)
+
+[node name="Level0" instance=ExtResource("1_jofxg")]
+
+[node name="NavigationRegion3D" parent="." index="0"]
+navigation_mesh = SubResource("NavigationMesh_f1nl8")
+
+[node name="GridMap" parent="NavigationRegion3D" index="0"]
+cell_size = Vector3(2, 0.5, 2)
+data = {
+"cells": PackedInt32Array(65532, 65532, 0, 65532, 65533, 0, 65532, 65534, 0, 65532, 65535, 0, 65532, 0, 0, 65532, 1, 0, 65532, 2, 0, 65532, 3, 0, 65533, 65532, 0, 65533, 65533, 0, 65533, 65534, 0, 65533, 65535, 0, 65533, 0, 0, 65533, 1, 0, 65533, 2, 0, 65533, 3, 0, 65534, 65532, 0, 65534, 65533, 0, 65534, 65534, 0, 65534, 65535, 0, 65534, 0, 0, 65534, 1, 0, 65534, 2, 0, 65534, 3, 0, 65535, 65532, 0, 65535, 65533, 0, 65535, 65534, 0, 65535, 65535, 0, 65535, 0, 0, 65535, 1, 0, 65535, 2, 0, 65535, 3, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 1, 65532, 0, 1, 65533, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 2, 65532, 0, 2, 65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 3, 65532, 0, 3, 65533, 0, 3, 65534, 0, 3, 65535, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 131068, 4, 1, 131069, 4, 1, 131070, 4, 1, 131071, 4, 1, 65536, 4, 1, 65537, 4, 1, 65538, 4, 1, 65539, 4, 1, 65540, 4, 1, 65540, 3, 1, 65540, 2, 1, 65540, 1, 1, 65540, 0, 1, 65540, 65532, 1, 65540, 65531, 1, 65539, 65531, 1, 65538, 65531, 1, 65537, 65531, 1, 65536, 65531, 1, 131071, 65531, 1, 131070, 65531, 1, 131069, 65531, 1, 131068, 65531, 1, 131067, 65532, 1, 131067, 65531, 1, 131067, 4, 1, 131067, 3, 1, 131067, 0, 1, 131067, 65535, 1, 131067, 65534, 1, 131067, 65533, 1, 65540, 65535, 1, 4, 65534, 0, 4, 65533, 0, 65531, 2, 0, 65531, 1, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Enemies" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="Marker3D2" type="Marker3D" parent="Enemies" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55443, 0, 4.23348)
+
+[node name="Marker3D" type="Marker3D" parent="DoorsPosition" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -4)
+
+[node name="Marker3D2" type="Marker3D" parent="DoorsPosition" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -3)
+
+[node name="Marker3D3" type="Marker3D" parent="DoorsPosition" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 4)
+
+[node name="Marker3D4" type="Marker3D" parent="DoorsPosition" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8745, 2.18392, -3.96257)
+shape = SubResource("BoxShape3D_kf0gl")

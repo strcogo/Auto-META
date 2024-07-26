@@ -6,7 +6,7 @@ var accel = 10
 
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
-@onready var player = get_parent().get_parent().get_parent().get_node("Player")
+@onready var player = get_node("../..").get_node("Player")
 
 @onready var direction = Vector3()
 @onready var animPlayer = $AnimationPlayer
@@ -39,8 +39,7 @@ func _physics_process(delta):
 			animPlayer.play("stunned")
 
 func _ready():
-	animPlayer.play("spawning")
-	await animPlayer.animation_finished
+	pass
 
 
 func take_damage(amount: int):
