@@ -429,10 +429,14 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100
 follow_viewport_enabled = true
 
 [node name="HealthBar" parent="CanvasLayer" instance=ExtResource("12_w0gaq")]
-offset_left = 15.0
-offset_top = 625.0
-offset_right = 255.0
-offset_bottom = 635.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -19.0
+offset_right = 251.0
+offset_bottom = -9.0
+grow_vertical = 0
 
 [node name="PlayerHurtBox" type="Area3D" parent="."]
 script = ExtResource("12_rgosn")
