@@ -347,7 +347,7 @@ collision_mask = 3
 script = ExtResource("1_yrr8d")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.999983, -0.00319121, 0.0049365, -0.00123413, 0.707106, 0.707107, -0.00574715, -0.707101, 0.70709, 0, 12, 10)
+transform = Transform3D(0.999983, -0.00319121, 0.0049365, -0.00123413, 0.707106, 0.707107, -0.00574715, -0.707101, 0.707089, 0, 10, 8)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -426,17 +426,12 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100
 [node name="Dash" parent="." instance=ExtResource("3_gvhk6")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
 [node name="HealthBar" parent="CanvasLayer" instance=ExtResource("12_w0gaq")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = -19.0
-offset_right = 251.0
-offset_bottom = -9.0
-grow_vertical = 0
+offset_left = 15.0
+offset_top = 625.0
+offset_right = 255.0
+offset_bottom = 635.0
 
 [node name="PlayerHurtBox" type="Area3D" parent="."]
 script = ExtResource("12_rgosn")

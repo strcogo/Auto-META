@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var speed = 2
 var accel = 10
-var life = 100
+var life = 10000
 
 @onready var player = get_node("../..").get_node("Player")
 @onready var nav: NavigationAgent3D = $NavigationAgent3D

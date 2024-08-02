@@ -2,11 +2,11 @@ extends CharacterBody3D
 
 var speed = 2
 var accel = 10
-@export var life = 100
+@export var life = 400
 
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
-@onready var player = get_node("../..").get_node("Player")
+@onready var player = get_parent().get_parent().get_node("Player")
 
 @onready var direction = Vector3()
 @onready var animPlayer = $AnimationPlayer
@@ -38,14 +38,11 @@ func _physics_process(delta):
 		STUNNED:
 			animPlayer.play("stunned")
 
-func _ready():
-	pass
-
-
 func take_damage(amount: int):
 	velocity = (direction * -1) * 30
 	move_and_slide()
 	life -= amount
+	$AnimationPlayer.play("damage")
 	if(life <= 0):
 		queue_free()
 
@@ -60,8 +57,6 @@ func _on_attack_range_body_exited(body):
 		state = WALKING
 
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "hit":
-		animPlayer.play("reset")
 	if anim_name == "stunned":
 		state = WALKING
-		animPlayer.play("reset")
+	animPlayer.play("reset")

@@ -1,14 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2654y2pv8cak"]
+[gd_scene load_steps=16 format=3 uid="uid://c2654y2pv8cak"]
 
 [ext_resource type="Script" path="res://enemies/enemy_1 (runner)/enemy1.gd" id="1_l7jgp"]
-[ext_resource type="PackedScene" uid="uid://v1adlwqaxi3v" path="res://enemies/enemy_1 (runner)/enemy.glb" id="1_p7m2h"]
 [ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_e8hhp"]
 [ext_resource type="Script" path="res://combat/hitbox.gd" id="3_m0w77"]
+[ext_resource type="ArrayMesh" uid="uid://dea2v470qjkm3" path="res://enemies/enemy_1 (runner)/untitled.obj" id="4_s3xav"]
 [ext_resource type="Script" path="res://combat/hurtbox.gd" id="5_x2j02"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcacr"]
 radius = 1.03542
 height = 8.62108
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc171"]
+albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ab6jh"]
 
@@ -53,38 +56,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("..:position")
+tracks/3/path = NodePath("../Pivot/Untitled:material_override:albedo_color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -1.97936, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Pivot/sword_model:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [Color(1, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ypc8f"]
@@ -145,52 +124,28 @@ tracks/1/keys = {
 "values": [Vector3(-1.3996, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_bkllt"]
-resource_name = "spawning"
-length = 0.5
+[sub_resource type="Animation" id="Animation_02ncg"]
+resource_name = "damage"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("..:position")
+tracks/0/path = NodePath("../Pivot/Untitled:material_override:albedo_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.00313614, 0.0980758),
+"transitions": PackedFloat32Array(1000, 0.1),
 "update": 0,
-"values": [Vector3(0, -1.97936, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Pivot/sword_model:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_77nqu"]
 _data = {
 "RESET": SubResource("Animation_ie6en"),
+"damage": SubResource("Animation_02ncg"),
 "hit": SubResource("Animation_ypc8f"),
-"reset": SubResource("Animation_gsuq4"),
-"spawning": SubResource("Animation_bkllt")
+"reset": SubResource("Animation_gsuq4")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lg6ld"]
@@ -198,14 +153,12 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c3p53"]
 
 [node name="Enemy1" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.97936, 0)
 script = ExtResource("1_l7jgp")
 
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="sword_model" parent="Pivot" instance=ExtResource("2_e8hhp")]
 transform = Transform3D(0.3, 0, 0, 0, 0.0511083, 0.295614, 0, -0.295614, 0.0511083, 0.474555, 0.50912, 0.228633)
-visible = false
 skeleton = NodePath("../..")
 
 [node name="HitBox" type="Area3D" parent="Pivot/sword_model"]
@@ -217,13 +170,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, -1.49012e-08, 0, 1, -1.19209
 shape = SubResource("CapsuleShape3D_pcacr")
 disabled = true
 
-[node name="enemy" parent="Pivot" instance=ExtResource("1_p7m2h")]
-transform = Transform3D(0.4, 0, 0, 0, 0.35, 0, 0, 0, 0.4, 0, 0, 0)
+[node name="Untitled" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.419876, 0)
+material_override = SubResource("StandardMaterial3D_tc171")
+mesh = ExtResource("4_s3xav")
+skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.987801, 0)
 shape = SubResource("CapsuleShape3D_ab6jh")
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../CollisionShape3D")

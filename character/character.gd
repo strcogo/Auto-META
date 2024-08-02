@@ -6,6 +6,7 @@ extends CharacterBody3D
 var target_velocity = Vector3.ZERO
 var dash_speed = speed * 5
 var dash_lenght = .1
+var is_attacking = false
 
 @onready var health_bar = $CanvasLayer/HealthBar
 
@@ -25,21 +26,26 @@ func _physics_process(delta):
 		direction.z += 1
 	if Input.is_action_pressed("move_up"):
 		direction.z -= 1
-		
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-		$Pivot.basis = Basis.looking_at(direction)
-	
+
 	if(Input.is_action_just_pressed("attack")):
 		$Pivot.basis = Basis.looking_at(mouse_position())
-
+		is_attacking = true
+		await $Pivot/WeaponManager/AnimationPlayer.animation_finished
+		is_attacking = false
+		
+	if direction != Vector3.ZERO and !is_attacking:
+		direction = direction.normalized()
+		$Pivot.basis = Basis.looking_at(direction)
 	if Input.is_action_just_pressed("dash"):
 		$Dash.start_dash(dash_lenght)
+	
 	var target_speed = dash_speed if $Dash.is_dashing() else speed
-	target_velocity.x = direction.x * target_speed
-	target_velocity.z = direction.z * target_speed
-	velocity = target_velocity
-	move_and_slide()
+	
+	if !is_attacking:
+		target_velocity.x = direction.x * target_speed
+		target_velocity.z = direction.z * target_speed
+		velocity = target_velocity
+		move_and_slide()
  
 func mouse_position():
 	var space_state = get_world_3d().direct_space_state
