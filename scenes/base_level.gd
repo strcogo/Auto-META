@@ -2,7 +2,7 @@ extends Node3D
 
 
 const ENEMY_SCENES: Dictionary = {
-	"ENEMY_BASE": preload("res://enemies/enemy_1 (runner)/enemy1.tscn")
+	"ENEMY_BASE": preload("res://enemies/enemy1/enemy1.tscn")
 }
 
 var num_enemies: int
@@ -34,7 +34,7 @@ func _spawn_enemies():
 		enemy.global_position = enemy_position.position
 		call_deferred("add_child", enemy)
 		
-		
+	
 func _on_enemy_killed():
 	num_enemies	 -= 1
 	if num_enemies == 0:

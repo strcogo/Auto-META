@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://combat/playerhitbox.gd" id="8_3vk1q"]
 [ext_resource type="PackedScene" uid="uid://chr5k8abkb8ep" path="res://weapons/weapon pickups/models/bow.glb" id="8_o3qeu"]
 [ext_resource type="Script" path="res://combat/playerhurtbox.gd" id="12_rgosn"]
-[ext_resource type="PackedScene" uid="uid://c21d6qw76v1ua" path="res://character/HealthBar.tscn" id="12_w0gaq"]
+[ext_resource type="PackedScene" uid="uid://c21d6qw76v1ua" path="res://character/health_bar.tscn" id="12_w0gaq"]
 [ext_resource type="Script" path="res://scenes/room_manager.gd" id="13_aqt04"]
 [ext_resource type="Resource" uid="uid://b0bj51aln2bax" path="res://scenes/resources/level01.tres" id="14_5vg34"]
 [ext_resource type="Resource" uid="uid://bewcfxta84r5g" path="res://scenes/resources/level02.tres" id="15_1yg5i"]

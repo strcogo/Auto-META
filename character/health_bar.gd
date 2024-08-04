@@ -6,6 +6,7 @@ extends ProgressBar
 
 var life = 0 : set = _set_life
 
+
 func init_health(_health):
 	life = _health
 	max_value = life
@@ -26,4 +27,3 @@ func _set_life(new_life):
 func _on_timer_timeout():
 	var tween = create_tween()
 	tween.tween_property(damage_bar, "value", life, 0.3)
-

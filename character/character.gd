@@ -16,7 +16,7 @@ func _ready():
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
-	var lastdirection = Vector3.ZERO
+	var last_direction = Vector3.ZERO
 	
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
@@ -28,11 +28,10 @@ func _physics_process(delta):
 		direction.z -= 1
 
 	if(Input.is_action_just_pressed("attack")):
-		$Pivot.basis = Basis.looking_at(mouse_position())
+		$Pivot.basis = Basis.looking_at(_mouse_position())
 		is_attacking = true
 		await $Pivot/WeaponManager/AnimationPlayer.animation_finished
 		is_attacking = false
-		
 	if direction != Vector3.ZERO and !is_attacking:
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
@@ -47,7 +46,8 @@ func _physics_process(delta):
 		velocity = target_velocity
 		move_and_slide()
  
-func mouse_position():
+
+func _mouse_position():
 	var space_state = get_world_3d().direct_space_state
 	var mouse_position = get_viewport().get_mouse_position()
 	var ray_origin = $MouseView.project_ray_origin(mouse_position)
@@ -58,10 +58,12 @@ func mouse_position():
 		var pos = intersection["position"]
 		return Vector3(pos.x, 0, pos.z)
 
+
 func take_damage(amount: int):
 	life -= amount
 	health_bar._set_life(life)
 	health_bar.life = life
+
 
 func player():
 	pass	

@@ -1,5 +1,5 @@
 extends StaticBody3D
 
 
-func open() -> void:
+func open():
 	self.queue_free()

@@ -9,19 +9,19 @@ var accel = 10
 @onready var player = get_parent().get_parent().get_node("Player")
 
 @onready var direction = Vector3()
-@onready var animPlayer = $AnimationPlayer
+@onready var anim_player = $AnimationPlayer
 
 enum {
 	WALKING,
-	ATACKING,
+	ATTACKING,
 	STUNNED
 }
 
 var state = WALKING
 
 func _physics_process(delta):
-	
 	match state:
+		
 		WALKING:
 			nav.target_position = player.position  
 	
@@ -31,32 +31,36 @@ func _physics_process(delta):
 
 			velocity = velocity.lerp(direction * speed, accel * delta)
 			move_and_slide()
-		ATACKING:
+			
+		ATTACKING:
 			if($AttackCooldown.is_stopped()):
-				$AnimationPlayer.play("hit")
+				anim_player.play("hit")
 				$AttackCooldown.start()
+				
 		STUNNED:
-			animPlayer.play("stunned")
+			anim_player.play("stunned")
+
 
 func take_damage(amount: int):
 	velocity = (direction * -1) * 30
 	move_and_slide()
 	life -= amount
-	$AnimationPlayer.play("damage")
+	anim_player.play("damage")
 	if(life <= 0):
 		queue_free()
 
 
 func _on_attack_range_body_entered(body):
 	if(body.has_method("player")) and state != STUNNED:
-		state = ATACKING
+		state = ATTACKING
 
 
 func _on_attack_range_body_exited(body):
 	if(body.has_method("player")) and state != STUNNED:
 		state = WALKING
 
+
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "stunned":
 		state = WALKING
-	animPlayer.play("reset")
+	anim_player.play("reset")
