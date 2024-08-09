@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqclggaxp8yd0"]
+
+[ext_resource type="PackedScene" uid="uid://bho800dttc1kn" path="res://menu/menu.tscn" id="1_taj1a"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425105, 1.27695)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="Control" parent="Camera3D" instance=ExtResource("1_taj1a")]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5005, -7)
+size = Vector3(12, 0.001, 15)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.570714, 0.821149, 0, -0.821149, -0.570714, -0.540916, 11.7668, -15.7462)

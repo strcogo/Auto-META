@@ -19,12 +19,14 @@ func _ready():
 
 func _open_doors():
 	for markers in door_positions.get_children():
-		tilemap.set_cell_item(markers.global_position, -1)
+		var cell_map_coords = tilemap.local_to_map(markers.global_position)
+		tilemap.set_cell_item(cell_map_coords, -1)
 		
 		
 func _close_doors():
 	for markers in door_positions.get_children():
-		tilemap.set_cell_item(markers.global_position, 2)
+		var cell_map_coords = tilemap.local_to_map(markers.global_position)
+		tilemap.set_cell_item(cell_map_coords, 2)
 
 
 func _spawn_enemies():

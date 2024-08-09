@@ -20,12 +20,16 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
+		direction.z += 1
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
+		direction.z -= 1
 	if Input.is_action_pressed("move_down"):
 		direction.z += 1
+		direction.x -= 1
 	if Input.is_action_pressed("move_up"):
 		direction.z -= 1
+		direction.x += 1
 
 	if(Input.is_action_just_pressed("attack")):
 		$Pivot.basis = Basis.looking_at(_mouse_position())

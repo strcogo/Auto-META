@@ -9,3 +9,4 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9935, 1.05095, -3.94951)
 
 [node name="Level0" parent="." instance=ExtResource("2_h7nbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0419149, 0.288012, 0.248558)
