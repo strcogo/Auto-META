@@ -1,15 +1,15 @@
 extends CharacterBody3D
 
-var speed = 2
-var accel = 10
-@export var life = 400
-
-
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 @onready var player = get_parent().get_parent().get_node("Player")
-
 @onready var direction = Vector3()
 @onready var anim_player = $AnimationPlayer
+
+var speed = 2
+var accel = 10
+var state = WALKING
+
+@export var life = 400
 
 enum {
 	WALKING,
@@ -17,9 +17,8 @@ enum {
 	STUNNED
 }
 
-var state = WALKING
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	match state:
 		
 		WALKING:
@@ -41,7 +40,7 @@ func _physics_process(delta):
 			anim_player.play("stunned")
 
 
-func take_damage(amount: int):
+func take_damage(amount: int) -> void:
 	velocity = (direction * -1) * 30
 	move_and_slide()
 	life -= amount
@@ -50,17 +49,17 @@ func take_damage(amount: int):
 		queue_free()
 
 
-func _on_attack_range_body_entered(body):
-	if(body.has_method("player")) and state != STUNNED:
+func _on_attack_range_body_entered(body: CharacterBody3D) -> void:
+	if(body.has_method("player") and state != STUNNED):
 		state = ATTACKING
 
 
-func _on_attack_range_body_exited(body):
-	if(body.has_method("player")) and state != STUNNED:
+func _on_attack_range_body_exited(body: CharacterBody3D) -> void:
+	if(body.has_method("player") and state != STUNNED):
 		state = WALKING
 
 
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "stunned":
+func _on_animation_player_animation_finished(anim_name: String) -> void:
+	if(anim_name == "stunned"):
 		state = WALKING
 	anim_player.play("reset")
