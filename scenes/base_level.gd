@@ -9,6 +9,8 @@ const ENEMY_SCENES: Dictionary = {
 @onready var door_positions: Node3D = $DoorsPosition
 @onready var enemies_node: Node3D = $Enemies
 @onready var player_detector: Area3D = $PlayerDetector
+@onready var audio_manager: Node2D = $"../AudioManager"
+
 
 var num_enemies: int
 
@@ -30,6 +32,7 @@ func _close_doors() -> void:
 
 
 func _spawn_enemies() -> void:
+	audio_manager.play("hw")
 	for enemy_position in enemies_node.get_children():
 		var enemy: CharacterBody3D = ENEMY_SCENES.ENEMY_BASE.instantiate()
 		var __ = enemy.connect("tree_exited", self._on_enemy_killed)

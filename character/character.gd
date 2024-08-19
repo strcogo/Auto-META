@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var health_bar = $CanvasLayer/HealthBar
+@onready var audio_manager: Node2D = $"../AudioManager"
 
 @export var speed = 10
 @export var life = 125
@@ -12,6 +13,7 @@ var is_attacking = false
 
 
 func _ready() -> void:
+	audio_manager.play("uf")
 	health_bar.init_health(life)
 
 

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AudioResource" load_steps=3 format=3 uid="uid://cds73gh58fncb"]
+
+[ext_resource type="AudioStream" uid="uid://jgl7mmcltc78" path="res://audio/music/usettling-feeling.wav" id="1_6bscm"]
+[ext_resource type="Script" path="res://audio/audio_resource.gd" id="1_wjvms"]
+
+[resource]
+script = ExtResource("1_wjvms")
+stream_name = "uf"
+audio = ExtResource("1_6bscm")

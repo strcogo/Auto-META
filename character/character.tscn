@@ -423,18 +423,24 @@ collision_mask = 8
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
 shape = SubResource("CylinderShape3D_u510i")
 
-[node name="MouseView" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, 0.707107, 3.09086e-08, 0, -4.37114e-08, 1, 0.707107, -0.707107, -3.09086e-08, 0, 100, 0)
-
 [node name="Dash" parent="." instance=ExtResource("3_gvhk6")]
+
+[node name="MouseView" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" parent="CanvasLayer" instance=ExtResource("12_w0gaq")]
-offset_left = 15.0
-offset_top = 625.0
-offset_right = 255.0
-offset_bottom = 635.0
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.965
+anchor_right = 0.013
+anchor_bottom = 0.98
+offset_left = 0.0240002
+offset_top = -0.320007
+offset_right = 240.024
+offset_bottom = -0.0400391
+grow_vertical = 0
 
 [node name="PlayerHurtBox" type="Area3D" parent="."]
 script = ExtResource("12_rgosn")
