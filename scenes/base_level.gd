@@ -1,7 +1,7 @@
 extends Node3D
 
 const ENEMY_SCENES: Dictionary = {
-	"ENEMY_BASE": preload("res://enemies/enemy1/enemy1.tscn")
+	"ENEMY_BASE": preload("res://enemies/enemy_base/enemy_base.tscn")
 }
 
 @onready var tilemap: GridMap = $NavigationRegion3D/GridMap
@@ -10,7 +10,6 @@ const ENEMY_SCENES: Dictionary = {
 @onready var enemies_node: Node3D = $Enemies
 @onready var player_detector: Area3D = $PlayerDetector
 @onready var audio_manager: Node2D = $"../AudioManager"
-
 
 var num_enemies: int
 

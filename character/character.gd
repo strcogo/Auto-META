@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var health_bar = $CanvasLayer/HealthBar
 @onready var audio_manager: Node2D = $"../AudioManager"
+@onready var mouse_view: Camera3D = $MouseView
 
 @export var speed = 10
 @export var life = 125
@@ -13,7 +14,6 @@ var is_attacking = false
 
 
 func _ready() -> void:
-	audio_manager.play("uf")
 	health_bar.init_health(life)
 
 
@@ -57,10 +57,11 @@ func _physics_process(delta) -> void:
 func _mouse_position() -> Vector3:
 	var space_state = get_world_3d().direct_space_state
 	var mouse_position = get_viewport().get_mouse_position()
-	var ray_origin = $MouseView.project_ray_origin(mouse_position)
-	var ray_end = ray_origin + $MouseView.project_ray_normal(mouse_position) * 100000
+	var ray_origin = mouse_view.project_ray_origin(mouse_position)
+	var ray_end = ray_origin + mouse_view.project_ray_normal(mouse_position) * 1000000
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	var intersection = space_state.intersect_ray(query)
+	print(intersection["position"])
 	if(!intersection.is_empty()):
 		var pos = intersection["position"]
 		return Vector3(pos.x, 0, pos.z)

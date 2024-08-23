@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://kgteowghfdag"]
+[gd_scene load_steps=7 format=3 uid="uid://kgteowghfdag"]
 
-[ext_resource type="PackedScene" uid="uid://bho800dttc1kn" path="res://menu/menu.tscn" id="1_d7ldp"]
 [ext_resource type="PackedScene" uid="uid://cjirmrxia1rsc" path="res://character/character.tscn" id="1_vync2"]
 [ext_resource type="PackedScene" uid="uid://ubctyklsaq7j" path="res://scenes/level_0.tscn" id="2_h7nbg"]
 [ext_resource type="Script" path="res://audio/audio_manager.gd" id="4_onhv6"]
@@ -13,8 +12,6 @@
 [node name="AudioManager" type="Node2D" parent="."]
 script = ExtResource("4_onhv6")
 _audio_streams = Array[ExtResource("5_01y17")]([ExtResource("6_hg4vh"), ExtResource("7_s0fut")])
-
-[node name="Control" parent="." instance=ExtResource("1_d7ldp")]
 
 [node name="Player" parent="." instance=ExtResource("1_vync2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.712, 1.05095, 6.34938)

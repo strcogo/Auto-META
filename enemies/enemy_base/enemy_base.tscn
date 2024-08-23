@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://c2654y2pv8cak"]
 
-[ext_resource type="Script" path="res://enemies/enemy1/enemy1.gd" id="1_qtw02"]
-[ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_mjcqy"]
-[ext_resource type="Script" path="res://combat/hitbox.gd" id="3_fico1"]
-[ext_resource type="ArrayMesh" uid="uid://dea2v470qjkm3" path="res://enemies/enemy1/untitled.obj" id="4_ptgif"]
-[ext_resource type="Script" path="res://combat/hurtbox.gd" id="5_r2g47"]
+[ext_resource type="Script" path="res://enemies/enemy_base/enemy_base.gd" id="1_fa8fq"]
+[ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_8xvsx"]
+[ext_resource type="Script" path="res://combat/hitbox.gd" id="3_cjwto"]
+[ext_resource type="ArrayMesh" uid="uid://dea2v470qjkm3" path="res://enemies/enemy_base/untitled.obj" id="4_8s17o"]
+[ext_resource type="Script" path="res://combat/hurtbox.gd" id="5_uudlc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcacr"]
 radius = 1.03542
@@ -153,16 +153,16 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c3p53"]
 
 [node name="Enemy1" type="CharacterBody3D"]
-script = ExtResource("1_qtw02")
+script = ExtResource("1_fa8fq")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="sword_model" parent="Pivot" instance=ExtResource("2_mjcqy")]
+[node name="sword_model" parent="Pivot" instance=ExtResource("2_8xvsx")]
 transform = Transform3D(0.3, 0, 0, 0, 0.0511083, 0.295614, 0, -0.295614, 0.0511083, 0.474555, 0.50912, 0.228633)
 skeleton = NodePath("../..")
 
 [node name="HitBox" type="Area3D" parent="Pivot/sword_model"]
-script = ExtResource("3_fico1")
+script = ExtResource("3_cjwto")
 damage = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/sword_model/HitBox"]
@@ -173,7 +173,7 @@ disabled = true
 [node name="Untitled" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.419876, 0)
 material_override = SubResource("StandardMaterial3D_tc171")
-mesh = ExtResource("4_ptgif")
+mesh = ExtResource("4_8s17o")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -202,7 +202,7 @@ one_shot = true
 autostart = true
 
 [node name="HurtBox" type="Area3D" parent="."]
-script = ExtResource("5_r2g47")
+script = ExtResource("5_uudlc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
