@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://kgteowghfdag"]
+[gd_scene load_steps=11 format=3 uid="uid://kgteowghfdag"]
 
 [ext_resource type="PackedScene" uid="uid://bho800dttc1kn" path="res://menu/menu.tscn" id="1_d7ldp"]
 [ext_resource type="PackedScene" uid="uid://cjirmrxia1rsc" path="res://character/character.tscn" id="1_vync2"]
@@ -7,6 +7,14 @@
 [ext_resource type="Script" path="res://audio/audio_resource.gd" id="5_01y17"]
 [ext_resource type="Resource" uid="uid://5unitow4sm5g" path="res://audio/music/resources/hell-wrath.tres" id="6_hg4vh"]
 [ext_resource type="Resource" uid="uid://cds73gh58fncb" path="res://audio/music/resources/usettling-feeling.tres" id="7_s0fut"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3kg67"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1p"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dxagi"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 
 [node name="Game" type="Node3D"]
 
@@ -20,3 +28,14 @@ _audio_streams = Array[ExtResource("5_01y17")]([ExtResource("6_hg4vh"), ExtResou
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.712, 1.05095, 6.34938)
 
 [node name="Level0" parent="." instance=ExtResource("2_h7nbg")]
+
+[node name="Void" type="StaticBody3D" parent="."]
+transform = Transform3D(141.421, 0, 141.421, 0, 200, 0, -141.421, 0, 141.421, 0, -2.34668, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Void"]
+mesh = SubResource("PlaneMesh_3kg67")
+skeleton = NodePath("../../NavigationRegion3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_rdi1p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Void"]
+shape = SubResource("ConvexPolygonShape3D_dxagi")

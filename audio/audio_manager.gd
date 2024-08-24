@@ -14,6 +14,8 @@ func initialize() -> void:
 
 
 func play(stream_name: String) -> void:
+	for stream in self.get_children():
+		stream.queue_free()
 	var instance = AudioStreamPlayer.new()
 	instance.volume_db -= 20
 	instance.stream = audio_list[stream_name].audio
