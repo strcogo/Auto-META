@@ -21,16 +21,16 @@ func _physics_process(delta) -> void:
 	var direction = Vector3.ZERO
 	var last_direction = Vector3.ZERO
 	
-	if(Input.is_action_pressed("move_right")):
+	if(Input.is_action_pressed("move_up")):
 		direction.x += 1
 		direction.z += 1
-	if(Input.is_action_pressed("move_left")):
+	if(Input.is_action_pressed("move_down")):
 		direction.x -= 1
 		direction.z -= 1
-	if(Input.is_action_pressed("move_down")):
+	if(Input.is_action_pressed("move_right")):
 		direction.z += 1
 		direction.x -= 1
-	if(Input.is_action_pressed("move_up")):
+	if(Input.is_action_pressed("move_left")):
 		direction.z -= 1
 		direction.x += 1
 
@@ -61,7 +61,8 @@ func _mouse_position() -> Vector3:
 	var ray_end = ray_origin + mouse_view.project_ray_normal(mouse_position) * 1000000
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	var intersection = space_state.intersect_ray(query)
-	print(intersection["position"])
+	# nunca faça nenhum nível antes do ponto central
+	# coordenadas negativas bugam essa porra tudo
 	if(!intersection.is_empty()):
 		var pos = intersection["position"]
 		return Vector3(pos.x, 0, pos.z)

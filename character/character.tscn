@@ -14,7 +14,8 @@
 [ext_resource type="Script" path="res://combat/playerhurtbox.gd" id="12_rgosn"]
 [ext_resource type="PackedScene" uid="uid://c21d6qw76v1ua" path="res://character/health_bar.tscn" id="12_w0gaq"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_qifpa"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhgol"]
+size = Vector3(1, 1.85516, 1)
 
 [sub_resource type="Animation" id="Animation_rdk3h"]
 length = 0.001
@@ -344,15 +345,23 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_yrr8d")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, 0.612372, -0.353554, 0, 0.5, 0.866025, 0.707107, -0.612372, 0.353554, -3, 10, 3)
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 75, -75)
+projection = 1
+current = true
+size = 30.0
+near = 0.01
+far = 1500.0
 
 [node name="MouseView" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, 0.707107, 3.09086e-08, 0, -4.37114e-08, 1, 0.707107, -0.707107, -3.09086e-08, 0, 100, 0)
+transform = Transform3D(-0.707107, 0.707107, 3.09086e-08, 0, -4.37114e-08, 1, 0.707107, 0.707107, 3.09086e-08, 0, 100, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_qifpa")
+shape = SubResource("BoxShape3D_nhgol")
 
 [node name="Pivot" type="Node3D" parent="."]
 
