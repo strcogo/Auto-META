@@ -14,7 +14,12 @@ mesh_library = ExtResource("2_7wrci")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.707107, 0.707107, 3.09086e-08, 0, -4.37114e-08, 1, 0.707107, -0.707107, -3.09086e-08, 0.438397, 6.16884, -2.46832)
+transform = Transform3D(-0.707107, 0.5, 0.5, 6.18172e-08, -0.707107, 0.707107, 0.707107, 0.5, 0.5, 10, 10, 10)
+light_color = Color(0.913644, 0.884735, 0.971431, 1)
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+shadow_opacity = 0.8
+shadow_blur = 2.0
 
 [node name="Enemies" type="Node3D" parent="."]
 

@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [display]
 
 window/size/mode=2
-window/size/initial_position_type=2
 
 [input]
 

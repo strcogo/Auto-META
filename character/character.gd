@@ -2,11 +2,11 @@ extends CharacterBody3D
 
 @onready var health_bar = $CanvasLayer/HealthBar
 @onready var audio_manager: Node2D = $"../AudioManager"
+@onready var camera: Camera3D = $CameraPivot/Camera3D
 @onready var mouse_view: Camera3D = $MouseView
 
 @export var speed = 10
 @export var life = 125
-
 var target_velocity = Vector3.ZERO
 var dash_speed = speed * 5
 var dash_lenght = .1
@@ -56,13 +56,11 @@ func _physics_process(delta) -> void:
 
 func _mouse_position() -> Vector3:
 	var space_state = get_world_3d().direct_space_state
-	var mouse_position = get_viewport().get_mouse_position()
+	var mouse_position = mouse_view.get_viewport().get_mouse_position()
 	var ray_origin = mouse_view.project_ray_origin(mouse_position)
 	var ray_end = ray_origin + mouse_view.project_ray_normal(mouse_position) * 1000000
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	var intersection = space_state.intersect_ray(query)
-	# nunca faça nenhum nível antes do ponto central
-	# coordenadas negativas bugam essa porra tudo
 	if(!intersection.is_empty()):
 		var pos = intersection["position"]
 		return Vector3(pos.x, 0, pos.z)
