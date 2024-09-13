@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cjirmrxia1rsc"]
+[gd_scene load_steps=30 format=3 uid="uid://cjirmrxia1rsc"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_yrr8d"]
 [ext_resource type="ArrayMesh" uid="uid://yxb7n4r15s1c" path="res://character/charactercapsule.obj" id="2_1shee"]
@@ -340,6 +340,11 @@ height = 1.77689
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e0rab"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_p2o6g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3ev2"]
+albedo_color = Color(1, 0, 0, 1)
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
@@ -355,10 +360,6 @@ current = true
 size = 20.0
 near = 0.01
 far = 1500.0
-
-[node name="MouseView" type="Camera3D" parent="."]
-transform = Transform3D(-0.707107, 0.707107, 3.09086e-08, 0, -4.37114e-08, 1, 0.707107, 0.707107, 3.09086e-08, 0, 20, 0)
-size = 30.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -453,6 +454,12 @@ script = ExtResource("12_rgosn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_e0rab")
+
+[node name="Cursor" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1, 0)
+mesh = SubResource("SphereMesh_p2o6g")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3ev2")
 
 [connection signal="animation_finished" from="Pivot/WeaponManager/AnimationPlayer" to="Pivot/WeaponManager" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Pivot/WeaponManager/PickupArea" to="Pivot/WeaponManager" method="_on_pickup_area_body_entered"]

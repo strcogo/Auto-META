@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var health_bar = $CanvasLayer/HealthBar
 @onready var audio_manager: Node2D = $"../AudioManager"
 @onready var camera: Camera3D = $CameraPivot/Camera3D
-@onready var mouse_view: Camera3D = $MouseView
+@onready var cursor: MeshInstance3D = $Cursor
 
 @export var speed = 10
 @export var life = 125
@@ -11,15 +11,18 @@ var target_velocity = Vector3.ZERO
 var dash_speed = speed * 5
 var dash_lenght = .1
 var is_attacking = false
+var cursor_pos
 
 
 func _ready() -> void:
 	health_bar.init_health(life)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func _physics_process(delta) -> void:
 	var direction = Vector3.ZERO
 	var last_direction = Vector3.ZERO
+	_look_at_cursor()
 	
 	if(Input.is_action_pressed("move_up")):
 		direction.x += 1
@@ -35,7 +38,7 @@ func _physics_process(delta) -> void:
 		direction.x += 1
 
 	if(Input.is_action_just_pressed("attack")):
-		$Pivot.basis = Basis.looking_at(_mouse_position())
+		$Pivot.look_at(cursor_pos, Vector3.UP)
 		is_attacking = true
 		await $Pivot/WeaponManager/AnimationPlayer.animation_finished
 		is_attacking = false
@@ -52,19 +55,17 @@ func _physics_process(delta) -> void:
 		target_velocity.z = direction.z * target_speed
 		velocity = target_velocity
 		move_and_slide()
- 
 
-func _mouse_position() -> Vector3:
-	var space_state = get_world_3d().direct_space_state
-	var mouse_position = mouse_view.get_viewport().get_mouse_position()
-	var ray_origin = mouse_view.project_ray_origin(mouse_position)
-	var ray_end = ray_origin + mouse_view.project_ray_normal(mouse_position) * 1000000
-	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-	var intersection = space_state.intersect_ray(query)
-	if(!intersection.is_empty()):
-		var pos = intersection["position"]
-		return Vector3(pos.x, 0, pos.z)
-	return Vector3(0, 0, 0)
+
+func _look_at_cursor():
+	var player_pos = global_transform.origin
+	var drop_plane = Plane(Vector3(0, 1, 0), player_pos.y)
+	var ray_length = 1000
+	var mouse_pos = get_viewport().get_mouse_position()
+	var from = camera.project_ray_origin(mouse_pos)
+	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
+	cursor_pos = drop_plane.intersects_ray(from, to)
+	cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
 
 
 func take_damage(amount: int) -> void:

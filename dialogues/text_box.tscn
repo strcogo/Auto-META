@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3jiypd3qrv7e"]
+
+[ext_resource type="Script" path="res://dialogues/text_box.gd" id="1_40kia"]
+[ext_resource type="FontFile" uid="uid://kwc3mgvbjnt7" path="res://fonts/home-video.ttf" id="2_in5sv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxp5v"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[node name="TextBox" type="CanvasLayer"]
+script = ExtResource("1_40kia")
+
+[node name="TextBoxContainer" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_top = 0.684
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.231995
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="TextBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mxp5v")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="TextBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1071, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_in5sv")
+theme_override_font_sizes/font_size = 50
+text = "Placeholder"
+autowrap_mode = 3
+clip_text = true
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="End" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_in5sv")
+theme_override_font_sizes/font_size = 25
+text = "v
+"
