@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://btv1ybdatyxy3"]
+
+[ext_resource type="Script" path="res://character/dash/dash.gd" id="1_gmbcv"]
+
+[node name="Dash" type="Node3D"]
+script = ExtResource("1_gmbcv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

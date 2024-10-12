@@ -2,11 +2,11 @@ extends CharacterBody3D
 
 @onready var health_bar = $CanvasLayer/HealthBar
 @onready var audio_manager: Node2D = $"../AudioManager"
-@onready var camera: Camera3D = $CameraPivot/Camera3D
+@onready var camera: Camera3D = $CameraPivot/Camera/Camera3D
 @onready var cursor: MeshInstance3D = $Cursor
 
 @export var speed = 10
-@export var life = 125
+@export var life = 10
 var target_velocity = Vector3.ZERO
 var dash_speed = speed * 5
 var dash_lenght = .1
@@ -15,6 +15,7 @@ var cursor_pos
 
 
 func _ready() -> void:
+	cursor.basis.looking_at(camera.position)
 	health_bar.init_health(life)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
@@ -68,7 +69,9 @@ func _look_at_cursor():
 	cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
 
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: float) -> void:
+	Hitstop.hit_stop(amount / 100)
+	$CameraPivot/Camera.add_duration(amount / 10)
 	life -= amount
 	health_bar._set_life(life)
 	health_bar.life = life

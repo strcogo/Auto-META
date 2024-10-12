@@ -1,18 +1,29 @@
-[gd_scene load_steps=30 format=3 uid="uid://cjirmrxia1rsc"]
+[gd_scene load_steps=35 format=3 uid="uid://cjirmrxia1rsc"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_yrr8d"]
-[ext_resource type="ArrayMesh" uid="uid://yxb7n4r15s1c" path="res://character/charactercapsule.obj" id="2_1shee"]
-[ext_resource type="PackedScene" uid="uid://btv1ybdatyxy3" path="res://character/dash.tscn" id="3_gvhk6"]
+[ext_resource type="ArrayMesh" uid="uid://yxb7n4r15s1c" path="res://character/models/charactercapsule.obj" id="2_1shee"]
+[ext_resource type="Script" path="res://character/camera/camera_shake.gd" id="2_qnyub"]
+[ext_resource type="PackedScene" uid="uid://btv1ybdatyxy3" path="res://character/dash/dash.tscn" id="3_gvhk6"]
 [ext_resource type="Script" path="res://weapons/weapon_resource.gd" id="4_4tog5"]
 [ext_resource type="Script" path="res://weapons/weapon_manager.gd" id="4_uxrtd"]
 [ext_resource type="Resource" uid="uid://cnb1l186mmxkb" path="res://weapons/weapon resources/bow.tres" id="5_sapeu"]
 [ext_resource type="Resource" uid="uid://bv4u2esk5do41" path="res://weapons/weapon resources/sword.tres" id="5_wi5de"]
 [ext_resource type="Script" path="res://weapons/weapon_pickup.gd" id="6_te3fk"]
 [ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="7_8xdu7"]
-[ext_resource type="Script" path="res://combat/playerhitbox.gd" id="8_3vk1q"]
 [ext_resource type="PackedScene" uid="uid://chr5k8abkb8ep" path="res://weapons/weapon pickups/models/bow.glb" id="8_o3qeu"]
-[ext_resource type="Script" path="res://combat/playerhurtbox.gd" id="12_rgosn"]
-[ext_resource type="PackedScene" uid="uid://c21d6qw76v1ua" path="res://character/health_bar.tscn" id="12_w0gaq"]
+[ext_resource type="Script" path="res://combat_scripts/playerhitbox.gd" id="10_14lvr"]
+[ext_resource type="PackedScene" uid="uid://c21d6qw76v1ua" path="res://character/health_bar/health_bar.tscn" id="12_w0gaq"]
+[ext_resource type="Script" path="res://character/dash/dash.gd" id="13_ypal6"]
+[ext_resource type="Script" path="res://character/health_bar/health_bar.gd" id="15_8hx6g"]
+[ext_resource type="Script" path="res://combat_scripts/playerhurtbox.gd" id="16_qtwa2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_43hrd"]
+noise_type = 0
+frequency = 0.02
+fractal_octaves = 4
+fractal_gain = 0.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cb44v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhgol"]
 size = Vector3(1, 1.85516, 1)
@@ -353,8 +364,15 @@ script = ExtResource("1_yrr8d")
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 75, -75)
+[node name="Camera" type="Area3D" parent="CameraPivot"]
+transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 0, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 0, 75, -75)
+script = ExtResource("2_qnyub")
+noise = SubResource("FastNoiseLite_43hrd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot/Camera"]
+shape = SubResource("BoxShape3D_cb44v")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/Camera"]
 projection = 1
 current = true
 size = 20.0
@@ -401,8 +419,7 @@ transform = Transform3D(0.2, 9.31323e-10, 3.49246e-09, 9.31323e-10, 0.2, 0, 6.75
 
 [node name="PlayerHitBox" type="Area3D" parent="Pivot/WeaponManager/Sword"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120609, 1.21623, 5.96046e-08)
-script = ExtResource("8_3vk1q")
-damage = 50
+script = ExtResource("10_14lvr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/WeaponManager/Sword/PlayerHitBox"]
 transform = Transform3D(1, -7.45058e-09, -1.19209e-07, 7.45058e-09, 1, 2.98023e-08, -1.49012e-08, -7.45058e-09, 1, 0.081715, -0.0651736, -0.0160908)
@@ -433,6 +450,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
 shape = SubResource("CylinderShape3D_u510i")
 
 [node name="Dash" parent="." instance=ExtResource("3_gvhk6")]
+script = ExtResource("13_ypal6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -447,9 +465,10 @@ offset_top = -0.320007
 offset_right = 240.024
 offset_bottom = -0.0400391
 grow_vertical = 0
+script = ExtResource("15_8hx6g")
 
 [node name="PlayerHurtBox" type="Area3D" parent="."]
-script = ExtResource("12_rgosn")
+script = ExtResource("16_qtwa2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

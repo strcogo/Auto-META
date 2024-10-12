@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var player = get_parent().get_parent().get_node("Player")
 @onready var direction = Vector3()
 @onready var anim_player = $AnimationPlayer
+@onready var model: MeshInstance3D = $Pivot/placeholder_model
 
 var speed = 2
 var accel = 10
@@ -41,10 +42,13 @@ func _physics_process(delta) -> void:
 
 
 func take_damage(amount: int) -> void:
+	model.get_surface_override_material(0).albedo_color = "#000000"
+	player.get_node("CameraPivot/Camera").add_duration(0.2)
+	Hitstop.hit_stop(0.05)
+	model.get_surface_override_material(0).albedo_color = "#ff0000"
 	velocity = (direction * -1) * 30
 	move_and_slide()
 	life -= amount
-	anim_player.play("damage")
 	if(life <= 0):
 		queue_free()
 

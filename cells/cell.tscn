@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c336w4a0j6wuj"]
+[gd_scene load_steps=12 format=3 uid="uid://c336w4a0j6wuj"]
 
 [ext_resource type="Texture2D" uid="uid://c6hkh5wxbwnrh" path="res://textures/image.png" id="1_i11rg"]
 [ext_resource type="Script" path="res://cells/cell.gd" id="1_jqjnq"]
@@ -17,6 +17,8 @@ texture_filter = 0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vck0i"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_biyqn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cifiu"]
 albedo_texture = ExtResource("1_i11rg")
@@ -39,6 +41,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_cu50i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vck0i")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="floor"]
+navigation_mesh = SubResource("NavigationMesh_biyqn")
 
 [node name="wall_l" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -1, 1, -1.13886e-22)

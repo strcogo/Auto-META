@@ -1,0 +1,214 @@
+[gd_scene load_steps=16 format=3 uid="uid://bi6fpms7e6dnc"]
+
+[ext_resource type="Script" path="res://enemies/enemy_base/enemy_test.gd" id="1_xdt8e"]
+[ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_qwbuh"]
+[ext_resource type="Script" path="res://combat/hitbox.gd" id="3_psw5m"]
+[ext_resource type="ArrayMesh" uid="uid://dea2v470qjkm3" path="res://enemies/enemy_base/untitled.obj" id="4_65oj6"]
+[ext_resource type="Script" path="res://combat/hurtbox.gd" id="5_a2ohl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcacr"]
+radius = 1.03542
+height = 8.62108
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lheas"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ab6jh"]
+
+[sub_resource type="Animation" id="Animation_ie6en"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/sword_model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.3996, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Pivot/sword_model/HitBox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Pivot/sword_model:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.474555, 0.50912, 0.228633)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Pivot/placeholder_model:material_override:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_02ncg"]
+resource_name = "damage"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/placeholder_model:material_override:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.00313614, 0.1),
+"transitions": PackedFloat32Array(1, 1000, 0.1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ypc8f"]
+resource_name = "hit"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/sword_model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.100123, 0.742622, -1.55343), Vector3(-0.100123, 2.75848, -1.55343)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Pivot/sword_model/HitBox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_gsuq4"]
+resource_name = "reset"
+length = 0.01
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/sword_model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.474555, 0.50912, 0.228633)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Pivot/sword_model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.3996, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_77nqu"]
+_data = {
+"RESET": SubResource("Animation_ie6en"),
+"damage": SubResource("Animation_02ncg"),
+"hit": SubResource("Animation_ypc8f"),
+"reset": SubResource("Animation_gsuq4")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lg6ld"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c3p53"]
+
+[node name="EnemyTest" type="CharacterBody3D"]
+script = ExtResource("1_xdt8e")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="sword_model" parent="Pivot" instance=ExtResource("2_qwbuh")]
+transform = Transform3D(0.3, 0, 0, 0, 0.0511083, 0.295614, 0, -0.295614, 0.0511083, 0.474555, 0.50912, 0.228633)
+skeleton = NodePath("../..")
+
+[node name="HitBox" type="Area3D" parent="Pivot/sword_model"]
+script = ExtResource("3_psw5m")
+damage = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/sword_model/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, -1.49012e-08, 0, 1, -1.19209e-07, 5.71293, -0.0216796)
+shape = SubResource("CapsuleShape3D_pcacr")
+disabled = true
+
+[node name="placeholder_model" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.419876, 0)
+mesh = ExtResource("4_65oj6")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_lheas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.987801, 0)
+shape = SubResource("CapsuleShape3D_ab6jh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape3D")
+libraries = {
+"": SubResource("AnimationLibrary_77nqu")
+}
+playback_default_blend_time = 0.1
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="AttackRange" type="Area3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+shape = SubResource("BoxShape3D_lg6ld")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="HurtBox" type="Area3D" parent="."]
+script = ExtResource("5_a2ohl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_c3p53")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
