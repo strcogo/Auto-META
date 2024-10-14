@@ -1,19 +1,19 @@
 extends CharacterBody3D
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
-@onready var player = get_parent().get_parent().get_node("Player")
+@onready var player = get_parent().get_node("Player")
 @onready var direction = Vector3()
 @onready var anim_player = $AnimationPlayer
 @onready var model: MeshInstance3D = $Pivot/placeholder_model
 
 var speed = 2
 var accel = 10
-var state = WALKING
+var state = CHASING
 
 @export var life = 400
 
 enum {
-	WALKING,
+	CHASING,
 	ATTACKING,
 	STUNNED
 }
@@ -22,7 +22,7 @@ enum {
 func _physics_process(delta) -> void:
 	match state:
 		
-		WALKING:
+		CHASING:
 			nav.target_position = player.position  
 	
 			direction = nav.get_next_path_position() - global_position
@@ -60,10 +60,10 @@ func _on_attack_range_body_entered(body: CharacterBody3D) -> void:
 
 func _on_attack_range_body_exited(body: CharacterBody3D) -> void:
 	if(body.has_method("player") and state != STUNNED):
-		state = WALKING
+		state = CHASING
 
 
 func _on_animation_player_animation_finished(anim_name: String) -> void:
 	if(anim_name == "stunned"):
-		state = WALKING
+		state = CHASING
 	anim_player.play("reset")

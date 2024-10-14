@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://audio/audio_resource.gd" id="5_01y17"]
 [ext_resource type="Resource" uid="uid://5unitow4sm5g" path="res://audio/music/resources/hell-wrath.tres" id="6_hg4vh"]
 [ext_resource type="Resource" uid="uid://cds73gh58fncb" path="res://audio/music/resources/usettling-feeling.tres" id="7_s0fut"]
-[ext_resource type="PackedScene" uid="uid://ubctyklsaq7j" path="res://scenes/level_0.tscn" id="7_udiga"]
+[ext_resource type="PackedScene" uid="uid://5q71hgr5quhp" path="res://enemies/harpy/harpy.tscn" id="8_0h6h0"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_q7ywi")
@@ -27,4 +27,5 @@ shadow_enabled = true
 shadow_opacity = 0.5
 shadow_blur = 2.0
 
-[node name="Level0" parent="." instance=ExtResource("7_udiga")]
+[node name="Harpy" parent="." instance=ExtResource("8_0h6h0")]
+motion_mode = 1

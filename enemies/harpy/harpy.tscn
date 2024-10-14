@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://5q71hgr5quhp"]
+
+[ext_resource type="PackedScene" uid="uid://c2654y2pv8cak" path="res://enemies/enemy_base/enemy_base.tscn" id="1_rdcie"]
+[ext_resource type="Script" path="res://combat_scripts/hitbox.gd" id="2_yyf4p"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_m3vgf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apkog"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7yu8p"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_lu8xm"]
+length = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2k1kp"]
+
+[sub_resource type="Animation" id="Animation_4dnlt"]
+resource_name = "hit"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1, -1), Vector3(0, 0, 2), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hpo7i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1tbqs"]
+resource_name = "idle"
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yw732"]
+_data = {
+"RESET": SubResource("Animation_hpo7i"),
+"hit": SubResource("Animation_4dnlt"),
+"idle": SubResource("Animation_1tbqs")
+}
+
+[node name="Harpy" instance=ExtResource("1_rdcie")]
+life = 1
+
+[node name="placeholder_model" type="MeshInstance3D" parent="Pivot" index="0"]
+mesh = SubResource("SphereMesh_m3vgf")
+surface_material_override/0 = SubResource("StandardMaterial3D_apkog")
+
+[node name="HitBox" type="Area3D" parent="Pivot/placeholder_model" index="0"]
+script = ExtResource("2_yyf4p")
+damage = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/placeholder_model/HitBox" index="0"]
+shape = SubResource("SphereShape3D_7yu8p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, -0.5, 0)
+shape = SubResource("SeparationRayShape3D_lu8xm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" index="0"]
+shape = SubResource("SphereShape3D_2k1kp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_yw732")
+}
