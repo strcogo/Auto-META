@@ -8,12 +8,12 @@ script = ExtResource("1_fa8fq")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
-
-[node name="AttackRange" type="Area3D" parent="."]
+[node name="AttackRange" type="Area3D" parent="Pivot"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
 collision_mask = 3
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 1.5
@@ -23,5 +23,5 @@ autostart = true
 [node name="HurtBox" type="Area3D" parent="."]
 script = ExtResource("2_pbbyg")
 
-[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
-[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="body_entered" from="Pivot/AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="Pivot/AttackRange" to="." method="_on_attack_range_body_exited"]

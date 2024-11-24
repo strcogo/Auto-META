@@ -21,7 +21,7 @@ func _ready() -> void:
 	queue_text("Este texto será escrito na tela!")
 
 	
-func _process(delta) -> void:
+func _process(delta: float) -> void:
 	match current_state:
 		state.READY:
 			label.visible_ratio = 0.0

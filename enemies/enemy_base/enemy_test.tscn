@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://enemies/enemy_base/enemy_test.gd" id="1_xdt8e"]
 [ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_qwbuh"]
-[ext_resource type="Script" path="res://combat/hitbox.gd" id="3_psw5m"]
+[ext_resource type="Script" path="res://combat_scripts/hitbox.gd" id="3_ikdhy"]
 [ext_resource type="ArrayMesh" uid="uid://dea2v470qjkm3" path="res://enemies/enemy_base/untitled.obj" id="4_65oj6"]
-[ext_resource type="Script" path="res://combat/hurtbox.gd" id="5_a2ohl"]
+[ext_resource type="Script" path="res://combat_scripts/hurtbox.gd" id="5_1vav6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcacr"]
 radius = 1.03542
@@ -162,8 +162,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.0511083, 0.295614, 0, -0.295614, 0.05110
 skeleton = NodePath("../..")
 
 [node name="HitBox" type="Area3D" parent="Pivot/sword_model"]
-script = ExtResource("3_psw5m")
-damage = 2
+script = ExtResource("3_ikdhy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/sword_model/HitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, -1.49012e-08, 0, 1, -1.19209e-07, 5.71293, -0.0216796)
@@ -203,7 +202,7 @@ one_shot = true
 autostart = true
 
 [node name="HurtBox" type="Area3D" parent="."]
-script = ExtResource("5_a2ohl")
+script = ExtResource("5_1vav6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

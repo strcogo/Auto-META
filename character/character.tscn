@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cjirmrxia1rsc"]
+[gd_scene load_steps=33 format=3 uid="uid://cjirmrxia1rsc"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_yrr8d"]
 [ext_resource type="ArrayMesh" uid="uid://yxb7n4r15s1c" path="res://character/models/charactercapsule.obj" id="2_1shee"]
@@ -13,8 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://chr5k8abkb8ep" path="res://weapons/weapon pickups/models/bow.glb" id="8_o3qeu"]
 [ext_resource type="Script" path="res://combat_scripts/playerhitbox.gd" id="10_14lvr"]
 [ext_resource type="PackedScene" uid="uid://c21d6qw76v1ua" path="res://character/health_bar/health_bar.tscn" id="12_w0gaq"]
-[ext_resource type="Script" path="res://character/dash/dash.gd" id="13_ypal6"]
-[ext_resource type="Script" path="res://character/health_bar/health_bar.gd" id="15_8hx6g"]
 [ext_resource type="Script" path="res://combat_scripts/playerhurtbox.gd" id="16_qtwa2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_43hrd"]
@@ -420,6 +418,7 @@ transform = Transform3D(0.2, 9.31323e-10, 3.49246e-09, 9.31323e-10, 0.2, 0, 6.75
 [node name="PlayerHitBox" type="Area3D" parent="Pivot/WeaponManager/Sword"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120609, 1.21623, 5.96046e-08)
 script = ExtResource("10_14lvr")
+damage = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/WeaponManager/Sword/PlayerHitBox"]
 transform = Transform3D(1, -7.45058e-09, -1.19209e-07, 7.45058e-09, 1, 2.98023e-08, -1.49012e-08, -7.45058e-09, 1, 0.081715, -0.0651736, -0.0160908)
@@ -450,7 +449,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
 shape = SubResource("CylinderShape3D_u510i")
 
 [node name="Dash" parent="." instance=ExtResource("3_gvhk6")]
-script = ExtResource("13_ypal6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -465,7 +463,6 @@ offset_top = -0.320007
 offset_right = 240.024
 offset_bottom = -0.0400391
 grow_vertical = 0
-script = ExtResource("15_8hx6g")
 
 [node name="PlayerHurtBox" type="Area3D" parent="."]
 script = ExtResource("16_qtwa2")

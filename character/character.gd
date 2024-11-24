@@ -70,7 +70,7 @@ func _look_at_cursor():
 
 
 func take_damage(amount: float) -> void:
-	Hitstop.hit_stop(amount / 100)
+	Hitstop.hit_stop(amount / 10)
 	$CameraPivot/Camera.add_duration(amount / 10)
 	life -= amount
 	health_bar._set_life(life)

@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dovv1kx4g7t8h"]
+
+[ext_resource type="PackedScene" uid="uid://cplrfvofy4ip" path="res://enemies/harpy/Guepyia.blend" id="1_av3hv"]
+[ext_resource type="Script" path="res://combat_scripts/hitbox.gd" id="2_rl1in"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4dhdl"]
+
+[node name="Guepyia" instance=ExtResource("1_av3hv")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0.0624997, 5.46555, -0.0448907)
+bones/0/rotation = Quaternion(0.00527026, 0.00175739, 0.274243, 0.961644)
+bones/1/rotation = Quaternion(0.0241742, -0.00707034, -0.191322, 0.981204)
+bones/2/rotation = Quaternion(-0.0286728, 0.00925765, 0.307116, 0.951195)
+bones/3/rotation = Quaternion(-2.10428e-08, 1.891e-08, 0.247682, 0.968841)
+bones/4/rotation = Quaternion(-0.651004, -0.0569303, -0.318576, 0.686631)
+bones/5/rotation = Quaternion(0.123174, 0.132907, 0.511512, 0.839952)
+bones/6/rotation = Quaternion(-0.299312, 0.0207754, 0.297393, 0.906387)
+bones/7/rotation = Quaternion(-0.155838, -0.156123, 0.267309, 0.938023)
+bones/8/rotation = Quaternion(0.0135377, -0.326675, 0.27691, 0.90356)
+bones/9/rotation = Quaternion(-0.20195, -0.346246, 0.174318, 0.899413)
+bones/10/rotation = Quaternion(-0.0943049, -0.397881, 0.0257712, 0.912213)
+bones/11/rotation = Quaternion(0.00753387, 0.601842, 0.71813, -0.349313)
+bones/12/rotation = Quaternion(0.412338, 0.691034, 0.326794, 0.495636)
+bones/13/rotation = Quaternion(0.0236107, 0.61207, 0.421275, 0.668835)
+bones/14/rotation = Quaternion(-0.20103, -0.0892712, 0.234485, 0.946908)
+bones/15/rotation = Quaternion(-0.187973, 0.0630754, 0.202994, 0.958896)
+bones/16/rotation = Quaternion(0.149205, 0.212527, 0.239191, 0.935606)
+bones/17/rotation = Quaternion(0.10385, 0.319666, 0.0361127, 0.941129)
+bones/18/position = Vector3(0.0624995, 5.43738, -0.0519343)
+bones/18/rotation = Quaternion(0.961233, 0.275678, -0.00291431, 0.0050516)
+bones/19/rotation = Quaternion(0.000587786, 0.000334751, 0.0484489, 0.998825)
+bones/20/rotation = Quaternion(-0.00084579, 0.000548723, -0.105808, 0.994386)
+bones/21/rotation = Quaternion(-8.33193e-05, 0.00184602, -0.0953196, 0.995445)
+bones/22/rotation = Quaternion(-0.0162898, -0.0316751, -0.146277, 0.988602)
+bones/23/rotation = Quaternion(-0.0279733, -0.00410416, -0.126687, 0.99154)
+
+[node name="HitBox" type="Area3D" parent="." index="2"]
+script = ExtResource("2_rl1in")
+damage = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
+shape = SubResource("SphereShape3D_4dhdl")
+disabled = true
