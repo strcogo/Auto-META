@@ -48,15 +48,29 @@ grow_vertical = 2
 theme = ExtResource("2_ns6nl")
 text = "JOGAR"
 
+[node name="ControlButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.0
+offset_top = 494.0
+offset_right = -1022.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ns6nl")
+text = "CONTROLES"
+
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 139.0
-offset_top = 495.0
+offset_top = 527.0
 offset_right = -1149.0
-offset_bottom = -233.0
+offset_bottom = -201.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_ns6nl")
@@ -75,4 +89,6 @@ offset_bottom = -6.0
 theme = ExtResource("2_ns6nl")
 text = "Jogo em desenvolvimento, não representa o projeto final. v0.0.1 (Alpha)"
 
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ControlButton" to="." method="_on_control_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

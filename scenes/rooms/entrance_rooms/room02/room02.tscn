@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj2n74dxtbb60"]
+
+[ext_resource type="PackedScene" uid="uid://fhs47nerrpl3" path="res://scenes/rooms/default_room/default_room.tscn" id="1_dkhhq"]
+[ext_resource type="PackedScene" uid="uid://cd7o6cj7oqppa" path="res://scenes/rooms/entrance_rooms/room02/room02.blend" id="2_biyr2"]
+[ext_resource type="PackedScene" uid="uid://dj8xr10gn4lrw" path="res://scenes/rooms/utility/door.tscn" id="3_l1004"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_2hsnt"]
+vertices = PackedVector3Array(9.25, 0.5, -10.5, 9.5, 0.5, -9, 12.5, 0.5, -9, 12.5, 0.5, -13.5, 8.75, 0.5, -13.75, 1.5, 0.5, -13.75, 1, 0.5, -13.5, 6.5, 0.5, -10, 6.75, 0.5, -10.5, 8.75, 0.5, -25.5, 1.5, 0.5, -25.5, -12.5, 0.5, -9, -9.5, 0.5, -9, -9.5, 0.5, -10.25, -8, 0.5, -10.5, -8, 0.5, -13.5, -12.5, 0.5, -13.5, -9.25, 0.5, -7.5, -12.5, 0.5, -1.75, -12.5, 0.5, 9, -9.5, 0.5, 9, -9.25, 0.5, 7.5, -12.5, 0.5, 6, -6.5, 0.5, 10.25, 6.5, 0.5, 10.25, 6.5, 0.5, 7.75, -6.75, 0.5, 7.5, -8, 0.5, 10.5, -8, 0.5, 13.5, 8, 0.5, 13.5, 8, 0.5, 10.5, -6.75, 0.5, -7.5, 12.25, 0.5, 2.25, 6.75, 0.5, -7.5, 9.25, 0.5, -7.5, -6.5, 0.5, -10.25, -14.5, 0.5, -1.5, -14.5, 0.5, 5.75, 9, 0.5, 7.5, -8.75, 8.5, -9.5, -8.75, 8.5, -8.25, -7.5, 8.5, -8.25, -7.5, 8.5, -9.5, 7.5, 8.5, -9.5, 7.5, 8.5, -8.25, 8.5, 8.5, -8.25, 8.5, 8.5, -9.5, -26.5, 0.5, -1.5, -26.5, 0.5, 5.75, 9.5, 0.5, 10.25, 12.25, 0.5, 13.5, 12.5, 0.5, 9.5, 12.5, 0.5, 2.75, 9.5, 0.5, 7.75, 24.5, 0.5, 9.75, 24.5, 0.5, 2.5, -8.75, 8.5, 8.5, -8.75, 8.5, 9.75, -7.5, 8.5, 9.75, -7.5, 8.5, 8.5, 7.25, 8.5, 8.5, 7.25, 8.5, 9.75, 8.5, 8.5, 9.75, 8.5, 8.5, 8.5, -9.5, 0.5, 10.25, -12.5, 0.5, 13.5, -8, 6.25, 13.25, -8, 6.5, 13.75, -7.25, 6.5, 13.75, -7.25, 6.25, 13.25, 9, 6.25, 13.25, 9, 6.5, 13.75, 9.75, 6.5, 13.75, 9.75, 6.25, 13.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(8, 7, 5), PackedInt32Array(5, 7, 6), PackedInt32Array(8, 5, 4), PackedInt32Array(4, 5, 10), PackedInt32Array(4, 10, 9), PackedInt32Array(4, 0, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(15, 14, 13), PackedInt32Array(11, 16, 13), PackedInt32Array(13, 16, 15), PackedInt32Array(12, 17, 11), PackedInt32Array(11, 17, 18), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26), PackedInt32Array(30, 29, 24), PackedInt32Array(24, 29, 23), PackedInt32Array(23, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(18, 31, 26), PackedInt32Array(26, 31, 25), PackedInt32Array(25, 31, 33), PackedInt32Array(25, 33, 32), PackedInt32Array(1, 2, 34), PackedInt32Array(34, 2, 32), PackedInt32Array(14, 15, 35), PackedInt32Array(35, 15, 6), PackedInt32Array(21, 22, 26), PackedInt32Array(26, 22, 18), PackedInt32Array(33, 34, 32), PackedInt32Array(36, 18, 37), PackedInt32Array(37, 18, 22), PackedInt32Array(7, 33, 6), PackedInt32Array(6, 33, 35), PackedInt32Array(35, 33, 31), PackedInt32Array(32, 38, 25), PackedInt32Array(18, 17, 31), PackedInt32Array(42, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(46, 45, 43), PackedInt32Array(43, 45, 44), PackedInt32Array(48, 47, 37), PackedInt32Array(37, 47, 36), PackedInt32Array(29, 30, 49), PackedInt32Array(51, 50, 49), PackedInt32Array(49, 50, 29), PackedInt32Array(53, 52, 51), PackedInt32Array(51, 52, 55), PackedInt32Array(51, 55, 54), PackedInt32Array(51, 49, 53), PackedInt32Array(53, 38, 52), PackedInt32Array(52, 38, 32), PackedInt32Array(59, 58, 56), PackedInt32Array(56, 58, 57), PackedInt32Array(63, 62, 60), PackedInt32Array(60, 62, 61), PackedInt32Array(19, 20, 64), PackedInt32Array(64, 27, 28), PackedInt32Array(19, 64, 65), PackedInt32Array(65, 64, 28), PackedInt32Array(69, 68, 66), PackedInt32Array(66, 68, 67), PackedInt32Array(73, 72, 70), PackedInt32Array(70, 72, 71)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l6p7m"]
+size = Vector3(1, 1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awfhs"]
+size = Vector3(2, 2, 7)
+
+[node name="Room02" instance=ExtResource("1_dkhhq")]
+
+[node name="NavigationRegion3D" parent="." index="0"]
+navigation_mesh = SubResource("NavigationMesh_2hsnt")
+
+[node name="room02" parent="NavigationRegion3D" index="0" instance=ExtResource("2_biyr2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Enemies" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
+
+[node name="Marker3D2" type="Marker3D" parent="Enemies" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, -1)
+
+[node name="Marker3D3" type="Marker3D" parent="Enemies" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09782e-08, 1, 9)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChangeDetector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 6)
+shape = SubResource("BoxShape3D_l6p7m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 1.5, 2)
+shape = SubResource("BoxShape3D_awfhs")
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource("3_l1004")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 6)
+
+[node name="PlayerPos" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 1, 1.70174)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://by6mn5f08m57a"]
+
+[ext_resource type="Theme" uid="uid://betfw0hrjb61w" path="res://fonts/themes/button_theme.tres" id="1_0f55h"]
+[ext_resource type="Script" path="res://menu/controls.gd" id="1_m6ni7"]
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m6ni7")
+
+[node name="BackGround" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 197.5
+offset_top = 219.5
+offset_right = -197.5
+offset_bottom = -219.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0f55h")
+theme_override_font_sizes/font_size = 64
+text = "Movimentar-se : WASD
+Atacar : Botão Esquerdo do Mouse
+Arrancar : Barra de Espaço
+Interagir : E"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 721.0
+offset_right = -1218.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme = ExtResource("1_0f55h")
+text = "VOLTAR"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0bhvs8fseict"]
+
+[ext_resource type="PackedScene" uid="uid://fhs47nerrpl3" path="res://scenes/rooms/default_room/default_room.tscn" id="1_vxw21"]
+[ext_resource type="PackedScene" uid="uid://djhm2rxgq88t0" path="res://scenes/rooms/entrance_rooms/room01/room01.blend" id="2_4wjei"]
+[ext_resource type="PackedScene" uid="uid://dj2n74dxtbb60" path="res://scenes/rooms/entrance_rooms/room02/room02.tscn" id="2_br1um"]
+[ext_resource type="PackedScene" uid="uid://dj8xr10gn4lrw" path="res://scenes/rooms/utility/door.tscn" id="3_4qwjo"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_pr3el"]
+vertices = PackedVector3Array(13, 0.5, 9.5, 13, 0.5, 2.5, 12.5, 0.5, 2.25, -12.5, 0.5, 13.5, 12.5, 0.5, 9.75, 12.5, 0.5, -13.5, -12.5, 0.5, -13.5, 12.5, 0.5, 13.5, 24.5, 0.5, 9.5, 24.5, 0.5, 2.25)
+polygons = [PackedInt32Array(0, 4, 1), PackedInt32Array(1, 4, 2), PackedInt32Array(2, 4, 3), PackedInt32Array(5, 2, 6), PackedInt32Array(6, 2, 3), PackedInt32Array(4, 7, 3), PackedInt32Array(0, 1, 8), PackedInt32Array(8, 1, 9)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_15aej"]
+size = Vector3(1, 1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_io312"]
+size = Vector3(7.23389, 2, 4.23389)
+
+[node name="Room01" instance=ExtResource("1_vxw21")]
+next_room = ExtResource("2_br1um")
+
+[node name="NavigationRegion3D" parent="." index="0"]
+navigation_mesh = SubResource("NavigationMesh_pr3el")
+
+[node name="room01" parent="NavigationRegion3D" index="0" instance=ExtResource("2_4wjei")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Enemies" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChangeDetector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2754, 1, 6)
+shape = SubResource("BoxShape3D_15aej")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0315, 1.5, -0.227939)
+shape = SubResource("BoxShape3D_io312")
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource("3_4qwjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 6)
+
+[node name="PlayerPos" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, -0.242501)

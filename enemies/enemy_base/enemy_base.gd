@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
-@onready var player = get_parent().get_node("Player")
+@onready var player = get_parent().get_parent().get_node("Player")
 @onready var direction = Vector3()
 @onready var anim_player = $Pivot/Model/AnimationPlayer
 @onready var model: MeshInstance3D = $Pivot/Model

@@ -1,25 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://kgteowghfdag"]
+[gd_scene load_steps=7 format=3 uid="uid://kgteowghfdag"]
 
-[ext_resource type="Script" path="res://game.gd" id="1_q7ywi"]
 [ext_resource type="PackedScene" uid="uid://cjirmrxia1rsc" path="res://character/character.tscn" id="1_vync2"]
 [ext_resource type="Script" path="res://audio/audio_manager.gd" id="4_onhv6"]
 [ext_resource type="Script" path="res://audio/audio_resource.gd" id="5_01y17"]
 [ext_resource type="Resource" uid="uid://5unitow4sm5g" path="res://audio/music/resources/hell-wrath.tres" id="6_hg4vh"]
 [ext_resource type="Resource" uid="uid://cds73gh58fncb" path="res://audio/music/resources/usettling-feeling.tres" id="7_s0fut"]
-[ext_resource type="PackedScene" uid="uid://5q71hgr5quhp" path="res://enemies/harpy/harpy.tscn" id="8_0h6h0"]
+[ext_resource type="PackedScene" uid="uid://b0bhvs8fseict" path="res://scenes/rooms/entrance_rooms/room01/room01.tscn" id="8_wob63"]
 
 [node name="Game" type="Node3D"]
-script = ExtResource("1_q7ywi")
 
 [node name="AudioManager" type="Node2D" parent="."]
 script = ExtResource("4_onhv6")
 _audio_streams = Array[ExtResource("5_01y17")]([ExtResource("6_hg4vh"), ExtResource("7_s0fut")])
 
 [node name="Player" parent="." instance=ExtResource("1_vync2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.47574, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08204, 0.47574, -11)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
+transform = Transform3D(0.570236, 0.806888, -0.15415, 0.260959, -4.21968e-08, 0.96535, 0.778929, -0.590704, -0.210565, 0, 15, 0)
 light_color = Color(0.861625, 0.878882, 0.967562, 1)
 light_energy = 1.25
 light_volumetric_fog_energy = 2.0
@@ -27,5 +25,4 @@ shadow_enabled = true
 shadow_opacity = 0.5
 shadow_blur = 2.0
 
-[node name="Harpy" parent="." instance=ExtResource("8_0h6h0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 13.8762, 0.538012, 13.5395)
+[node name="Room01" parent="." instance=ExtResource("8_wob63")]
