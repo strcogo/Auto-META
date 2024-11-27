@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/bartolomeu.blend-f2d346d6b709ca2d7d2f4a3d925d
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="MeshInstance3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -31,8 +31,23 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
-blender/nodes/visible=0
+_subresources={
+"nodes": {
+"PATH:hair": {
+"import/skip_import": true
+},
+"PATH:hair_002": {
+"import/skip_import": true
+},
+"PATH:legs": {
+"import/skip_import": true
+},
+"PATH:legs_002": {
+"import/skip_import": true
+}
+}
+}
+blender/nodes/visible=2
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true

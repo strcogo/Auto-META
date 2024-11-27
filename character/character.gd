@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $CameraPivot/Camera/Camera3D
 @onready var cursor_camera: Camera3D = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D2
 @onready var cursor: MeshInstance3D = $Cursor
+@onready var anim: AnimationPlayer = $Pivot/bartolomeu/AnimationPlayer
 
 @export var speed = 10
 @export var life = 10
@@ -28,23 +29,33 @@ func _physics_process(delta) -> void:
 	var last_direction = Vector3.ZERO
 	_look_at_cursor()
 	
+	if(!anim.is_playing()):
+		anim.play("idle")
+	
+	
 	if(Input.is_action_pressed("move_up")):
+		anim.play("walk")
 		direction.x += 1
 		direction.z += 1
 	if(Input.is_action_pressed("move_down")):
+		anim.play("walk")
 		direction.x -= 1
 		direction.z -= 1
 	if(Input.is_action_pressed("move_right")):
+		anim.play("walk")
 		direction.z += 1
 		direction.x -= 1
 	if(Input.is_action_pressed("move_left")):
+		anim.play("walk")
 		direction.z -= 1
 		direction.x += 1
+
 
 	if(Input.is_action_just_pressed("attack")):
 		$Pivot.look_at(cursor_pos, Vector3.UP)
 		is_attacking = true
-		await $Pivot/WeaponManager/AnimationPlayer.animation_finished
+		anim.play("hit")
+		await anim.animation_finished
 		is_attacking = false
 	if(direction != Vector3.ZERO and !is_attacking):
 		direction = direction.normalized()
