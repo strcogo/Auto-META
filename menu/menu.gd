@@ -17,7 +17,6 @@ func _on_play_button_pressed() -> void:
 	SceneTransition.transition()
 	await SceneTransition.on_transition_finished
 	get_tree().change_scene_to_packed(game)
-	MusicPlayer.stop()
 
 
 func _on_control_button_pressed() -> void:

@@ -6,8 +6,7 @@ extends CharacterBody3D
 @onready var cursor_camera: Camera3D = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D2
 @onready var cursor: MeshInstance3D = $Cursor
 @onready var anim: AnimationPlayer = $Pivot/bartolomeu/AnimationPlayer
-
-@onready var game_over = load("res://menu/game_over.tscn")
+@onready var anim2: AnimationPlayer = $Pivot/bartolomeu2/AnimationPlayer
 
 @export var speed = 10
 @export var life = 10
@@ -32,30 +31,40 @@ func _physics_process(delta) -> void:
 	_look_at_cursor()
 	
 	if(!anim.is_playing()):
+		anim2.play("idle")
 		anim.play("idle")
 	
+	if(!is_attacking):
+		if(Input.is_action_pressed("move_up")):
+			anim2.play("walk")
+			anim.play("walk")
+			direction.x += 1
+			direction.z += 1
+		if(Input.is_action_pressed("move_down")):
+			anim2.play("walk")
+			anim.play("walk")
+			direction.x -= 1
+			direction.z -= 1
+		if(Input.is_action_pressed("move_right")):
+			anim2.play("walk")
+			anim.play("walk")
+			direction.z += 1
+			direction.x -= 1
+		if(Input.is_action_pressed("move_left")):
+			anim2.play("walk")
+			anim.play("walk")
+			direction.z -= 1
+			direction.x += 1
 	
-	if(Input.is_action_pressed("move_up")):
-		anim.play("walk")
-		direction.x += 1
-		direction.z += 1
-	if(Input.is_action_pressed("move_down")):
-		anim.play("walk")
-		direction.x -= 1
-		direction.z -= 1
-	if(Input.is_action_pressed("move_right")):
-		anim.play("walk")
-		direction.z += 1
-		direction.x -= 1
-	if(Input.is_action_pressed("move_left")):
-		anim.play("walk")
-		direction.z -= 1
-		direction.x += 1
-
+	if(Input.get_vector("move_left", "move_right", "move_up", "move_down") == Vector2(0, 0) and !is_attacking):
+		anim.play("idle")
+		anim2.play("idle")
+	
 
 	if(Input.is_action_just_pressed("attack")):
 		$Pivot.look_at(cursor_pos, Vector3.UP)
 		is_attacking = true
+		anim2.play("hit")
 		anim.play("hit")
 		await anim.animation_finished
 		is_attacking = false
@@ -87,6 +96,7 @@ func _look_at_cursor():
 
 func take_damage(amount: float) -> void:
 	Hitstop.hit_stop(amount / 10)
+	MusicPlayer.play_FX(load("res://audio/FX/damage.mp3"))
 	$CameraPivot/Camera.add_duration(amount / 10)
 	life -= amount
 	health_bar._set_life(life)
@@ -94,7 +104,8 @@ func take_damage(amount: float) -> void:
 	if(life <= 0):
 		SceneTransition.transition()
 		await SceneTransition.on_transition_finished
-		get_tree().change_scene_to_packed(game_over)
+		MusicPlayer.play_FX(load(""))
+		get_tree().change_scene_to_file("res://menu/game_over.tscn")
 
 
 func player() -> void:

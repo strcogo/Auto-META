@@ -44,12 +44,14 @@ func _physics_process(delta: float) -> void:
 
 
 func take_damage(amount: int) -> void:
+	MusicPlayer.play_FX(load("res://audio/FX/hit.mp3"))
 	player.get_node("CameraPivot/Camera").add_duration(amount / 10)
 	Hitstop.hit_stop(amount / 10)
 	velocity = (direction * -1) * 30
 	move_and_slide()
 	life -= amount
 	if(life <= 0):
+		MusicPlayer.play_FX(load("res://audio/FX/enemy_death.mp3"))
 		queue_free()
 
 
