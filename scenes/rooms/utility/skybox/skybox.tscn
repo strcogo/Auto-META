@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx7xmoo4k5x2g"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nt78e"]
+
+[sub_resource type="Sky" id="Sky_4s3xk"]
+sky_material = SubResource("PanoramaSkyMaterial_nt78e")
+
+[sub_resource type="Environment" id="Environment_oakw0"]
+background_mode = 2
+sky = SubResource("Sky_4s3xk")
+
+[node name="Skybox" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oakw0")

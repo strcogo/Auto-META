@@ -186,7 +186,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-315.159, 12.212)
+graph_offset = Vector2(4.90247, 441.133)
 modes/cull = 2
 flags/unshaded = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_c3qvt")
@@ -249,3 +249,12 @@ gravity = Vector3(0, 0, 0)
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.623572, 0)
 light_color = Color(1, 0.623529, 0, 1)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.328521, 0.944497, 0, -0.944497, 0.328521, 0, 2.99273, -0.981188)
+light_color = Color(1, 0.623529, 0, 1)
+light_energy = 19.245
+light_indirect_energy = 16.0
+light_specular = 0.985
+spot_range = 11.2931
+spot_angle = 44.1555
