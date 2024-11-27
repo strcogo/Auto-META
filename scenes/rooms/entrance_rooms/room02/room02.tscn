@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=4 uid="uid://dj2n74dxtbb60"]
+[gd_scene load_steps=27 format=4 uid="uid://dj2n74dxtbb60"]
 
 [ext_resource type="PackedScene" uid="uid://fhs47nerrpl3" path="res://scenes/rooms/default_room/default_room.tscn" id="1_dkhhq"]
 [ext_resource type="Texture2D" uid="uid://8nqdt2jc7xak" path="res://scenes/rooms/entrance_rooms/room05/t_torch.png" id="2_462yp"]
+[ext_resource type="PackedScene" uid="uid://isrpiuu2pg7m" path="res://scenes/rooms/entrance_rooms/room03/room03.tscn" id="2_i44j8"]
 [ext_resource type="Texture2D" uid="uid://dladkom5nsinh" path="res://scenes/rooms/entrance_rooms/room05/t_ground.png" id="3_i0yvb"]
 [ext_resource type="PackedScene" uid="uid://dj8xr10gn4lrw" path="res://scenes/rooms/utility/door.tscn" id="3_l1004"]
 [ext_resource type="Texture2D" uid="uid://ccm1q3d675v5d" path="res://scenes/rooms/entrance_rooms/room05/t_wallbricks.png" id="4_1n21m"]
@@ -313,6 +314,7 @@ size = Vector3(1, 1, 7)
 size = Vector3(2, 2, 8.33899)
 
 [node name="Room02" instance=ExtResource("1_dkhhq")]
+next_room = ExtResource("2_i44j8")
 
 [node name="NavigationRegion3D" parent="." index="0"]
 navigation_mesh = SubResource("NavigationMesh_2hsnt")
