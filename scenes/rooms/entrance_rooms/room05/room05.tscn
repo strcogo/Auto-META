@@ -1,9 +1,9 @@
 [gd_scene load_steps=26 format=4 uid="uid://bnixyw4h4dc4l"]
 
 [ext_resource type="PackedScene" uid="uid://fhs47nerrpl3" path="res://scenes/rooms/default_room/default_room.tscn" id="1_7q6k1"]
-[ext_resource type="Texture2D" uid="uid://8nqdt2jc7xak" path="res://scenes/rooms/entrance_rooms/room05/t_torch.png" id="2_ufidv"]
-[ext_resource type="Texture2D" uid="uid://ccm1q3d675v5d" path="res://scenes/rooms/entrance_rooms/room05/t_wallbricks.png" id="3_vx3q1"]
-[ext_resource type="Texture2D" uid="uid://dladkom5nsinh" path="res://scenes/rooms/entrance_rooms/room05/t_ground.png" id="4_iljyv"]
+[ext_resource type="Texture2D" uid="uid://8nqdt2jc7xak" path="res://scenes/rooms/entrance_rooms/room03/t_torch.png" id="2_ufidv"]
+[ext_resource type="Texture2D" uid="uid://ccm1q3d675v5d" path="res://scenes/rooms/entrance_rooms/room03/t_wallbricks.png" id="3_vx3q1"]
+[ext_resource type="Texture2D" uid="uid://dladkom5nsinh" path="res://scenes/rooms/entrance_rooms/room03/t_ground.png" id="4_iljyv"]
 [ext_resource type="PackedScene" uid="uid://duwcf18m32m2w" path="res://scenes/rooms/utility/fire.tscn" id="5_dvbc2"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_u6hls"]
@@ -410,6 +410,18 @@ transform = Transform3D(15.8, 0, 0, 0, 15.8, 0, 0, 0, 15.8, 0, 0, 0)
 mesh = SubResource("ArrayMesh_2j4br")
 skeleton = NodePath("")
 
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="NavigationRegion3D/room05" index="7"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+polygon = PackedVector2Array(14.2445, 12.9836, 2.07089, 13.0475, 2.07855, 23.0657, -6.05956, 23.0421, -5.99944, 13.0222, -13.9803, 13.0135, -13.998, -13.0024, -24.0756, -12.9774, -24.1581, 31.0116, 14.2635, 30.9326)
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="NavigationRegion3D/room05" index="8"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+polygon = PackedVector2Array(7.99834, 0.994845, 6.02668, 0.979794, 6.01996, -0.994573, 3.97977, -1.02197, 3.99482, -2.97858, 2.05326, -2.99363, 2.00645, -5.00146, 8.00516, -4.98658, 7.99834, -3.00868, 10.0026, -2.98531, 9.99666, -0.989032, 8.00831, -0.991183)
+
+[node name="CollisionPolygon3D3" type="CollisionPolygon3D" parent="NavigationRegion3D/room05" index="9"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+polygon = PackedVector2Array(5.98351, 9.00772, 6.02145, 5.00523, 8.00373, 5.00523, 8.00373, 9.00772)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1392, 1, -2.00848)
 shape = SubResource("BoxShape3D_yo478")
@@ -419,3 +431,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1, -2)
 
 [node name="Fire" parent="." index="7" instance=ExtResource("5_dvbc2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8789, 5.62891, -10.9634)
+
+[node name="Fire2" parent="." index="8" instance=ExtResource("5_dvbc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6327, 5.62891, 7.03859)
+
+[node name="Fire3" parent="." index="9" instance=ExtResource("5_dvbc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.07492, 5.62891, 13.6718)

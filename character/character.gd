@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var health_bar = $CanvasLayer/HealthBar
 @onready var audio_manager: Node2D = $"../AudioManager"
 @onready var camera: Camera3D = $CameraPivot/Camera/Camera3D
+@onready var cursor_camera: Camera3D = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D2
 @onready var cursor: MeshInstance3D = $Cursor
 
 @export var speed = 10
@@ -21,6 +22,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
+	cursor_camera.global_transform = camera.global_transform
+	
 	var direction = Vector3.ZERO
 	var last_direction = Vector3.ZERO
 	_look_at_cursor()

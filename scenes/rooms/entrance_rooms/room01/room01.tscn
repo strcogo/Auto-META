@@ -353,6 +353,10 @@ skeleton = NodePath("")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 14.3125, 0, 12)
 shape = SubResource("ConcavePolygonShape3D_o1mn5")
 
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="NavigationRegion3D/room01" index="6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -13.7186, 1.4812, 12.6412)
+polygon = PackedVector2Array(-0.283163, 0.408301, -0.277921, -26.0081, 15.7229, -25.9257, 15.6876, -41.8358, -4.67983, -42.369, -5.53291, 4.8707, 30.7233, 5.40388, 31.0432, -29.9992, 31.1498, -41.1166, 23.6853, -41.4728, 23.7174, -25.9702, 28.0267, -26.0145, 28.0203, 0.340219)
+
 [node name="Marker3D" type="Marker3D" parent="Enemies" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChangeDetector" index="0"]

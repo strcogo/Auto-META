@@ -36,8 +36,7 @@ theme = ExtResource("1_0f55h")
 theme_override_font_sizes/font_size = 64
 text = "Movimentar-se : WASD
 Atacar : Botão Esquerdo do Mouse
-Arrancar : Barra de Espaço
-Interagir : E"
+Arrancar : Barra de Espaço"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
@@ -45,8 +44,8 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = 721.0
-offset_right = -1218.0
+offset_top = 1033.0
+offset_right = -1772.0
 offset_bottom = -10.0
 grow_vertical = 0
 theme = ExtResource("1_0f55h")

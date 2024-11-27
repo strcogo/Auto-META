@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://fhs47nerrpl3" path="res://scenes/rooms/default_room/default_room.tscn" id="1_amneq"]
 [ext_resource type="PackedScene" uid="uid://bnixyw4h4dc4l" path="res://scenes/rooms/entrance_rooms/room05/room05.tscn" id="2_kysyf"]
-[ext_resource type="Texture2D" uid="uid://8nqdt2jc7xak" path="res://scenes/rooms/entrance_rooms/room05/t_torch.png" id="2_q8yhi"]
-[ext_resource type="Texture2D" uid="uid://ccm1q3d675v5d" path="res://scenes/rooms/entrance_rooms/room05/t_wallbricks.png" id="3_g51me"]
-[ext_resource type="Texture2D" uid="uid://dladkom5nsinh" path="res://scenes/rooms/entrance_rooms/room05/t_ground.png" id="4_8102m"]
+[ext_resource type="Texture2D" uid="uid://8nqdt2jc7xak" path="res://scenes/rooms/entrance_rooms/room03/t_torch.png" id="2_q8yhi"]
+[ext_resource type="Texture2D" uid="uid://ccm1q3d675v5d" path="res://scenes/rooms/entrance_rooms/room03/t_wallbricks.png" id="3_g51me"]
+[ext_resource type="Texture2D" uid="uid://dladkom5nsinh" path="res://scenes/rooms/entrance_rooms/room03/t_ground.png" id="4_8102m"]
 [ext_resource type="PackedScene" uid="uid://dj8xr10gn4lrw" path="res://scenes/rooms/utility/door.tscn" id="5_dh284"]
 [ext_resource type="PackedScene" uid="uid://duwcf18m32m2w" path="res://scenes/rooms/utility/fire.tscn" id="6_enk1d"]
 
@@ -287,6 +287,10 @@ shape = SubResource("ConcavePolygonShape3D_vn2gi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -16)
 mesh = SubResource("ArrayMesh_nbskc")
 skeleton = NodePath("")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="NavigationRegion3D/room04" index="5"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 1, 0)
+polygon = PackedVector2Array(-25.0087, -3.94309, -17.0084, -3.99941, -17.031, -13.9998, -15.009, -13.9842, -15.0135, -17.9876, -11.0627, -17.972, -11.016, -19.963, -7.01854, -19.963, -6.9987, -22.0349, 8.95825, -21.9742, 9.00492, -19.9833, 12.9402, -19.9522, 13.0024, -18.039, 17.3109, -18.0234, 17.331, -29.8095, -30.6211, -29.6676, -31.1643, 29.8642, -3.02275, 29.959, -3.08497, 22.3219, -7.39271, 22.3121, -7.35104, 20.3188, -11.3329, 20.3654, -11.3577, 18.331, -15.0587, 18.2531, -15.0229, 14.0604, -16.9983, 13.9671, -17.0695, 4.03743, -25.0545, 4.02456)
 
 [node name="Marker3D" type="Marker3D" parent="Enemies" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.905, 1, -9)
