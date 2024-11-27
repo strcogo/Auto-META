@@ -11,7 +11,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_4dhdl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e2o7q"]
-size = Vector3(1, 0.892578, 0.523804)
+size = Vector3(1, 2, 0.523804)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qagbk"]
 resource_name = "m_skin"
@@ -546,7 +546,9 @@ height = 4.0
 radius = 0.995157
 
 [node name="Harpy" instance=ExtResource("1_rdcie")]
-life = 10
+collision_layer = 3
+collision_mask = 2
+life = 3
 
 [node name="Pivot" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -572,7 +574,7 @@ disabled = true
 script = ExtResource("3_v8p4j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Model/HurtBox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.88178e-16, 1.05371, 0.0543823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.88178e-16, 0.5, 0.0543823)
 shape = SubResource("BoxShape3D_e2o7q")
 
 [node name="Armature" type="Node3D" parent="Pivot/Model" index="2"]
@@ -758,5 +760,5 @@ libraries = {
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.01445, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.01445, -0.0433222)
 shape = SubResource("CylinderShape3D_f2nsd")
