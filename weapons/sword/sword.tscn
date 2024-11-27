@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccwc3oqqw637p"]
+
+[ext_resource type="Script" path="res://combat_scripts/playerhitbox.gd" id="1_fj3fs"]
+[ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_wxpkc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qree4"]
+size = Vector3(1.19189, 8.52362, 3.04248)
+
+[node name="Sword" type="Node3D"]
+
+[node name="PlayerHitBox" type="Area3D" parent="."]
+script = ExtResource("1_fj3fs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitBox"]
+transform = Transform3D(0.999998, 0.00143283, 0.00108557, -0.00143281, 0.999999, -1.58311e-05, -0.00108559, 1.42819e-05, 0.999999, -0.0910906, 6.32151, 0.140044)
+shape = SubResource("BoxShape3D_qree4")
+
+[node name="sword_model" parent="PlayerHitBox/CollisionShape3D" instance=ExtResource("2_wxpkc")]
+transform = Transform3D(0.999998, -0.00143281, -0.00108559, 0.00143283, 0.999999, 1.42757e-05, 0.00108557, -1.58374e-05, 0.999999, 0.1003, -6.32137, -0.139844)
+skeleton = NodePath("../..")
