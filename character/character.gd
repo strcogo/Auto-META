@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var cursor: MeshInstance3D = $Cursor
 @onready var anim: AnimationPlayer = $Pivot/bartolomeu/AnimationPlayer
 
+@onready var game_over = load("res://menu/game_over.tscn")
+
 @export var speed = 10
 @export var life = 10
 var target_velocity = Vector3.ZERO
@@ -89,6 +91,10 @@ func take_damage(amount: float) -> void:
 	life -= amount
 	health_bar._set_life(life)
 	health_bar.life = life
+	if(life <= 0):
+		SceneTransition.transition()
+		await SceneTransition.on_transition_finished
+		get_tree().change_scene_to_packed(game_over)
 
 
 func player() -> void:
