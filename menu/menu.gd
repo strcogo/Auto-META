@@ -16,6 +16,7 @@ func _on_quit_button_pressed() -> void:
 func _on_play_button_pressed() -> void:
 	SceneTransition.transition()
 	await SceneTransition.on_transition_finished
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().change_scene_to_packed(game)
 
 

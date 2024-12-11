@@ -20,7 +20,7 @@ var cursor_pos
 func _ready() -> void:
 	cursor.basis.looking_at(camera.position)
 	health_bar.init_health(life)
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
 func _physics_process(delta) -> void:
@@ -104,7 +104,7 @@ func take_damage(amount: float) -> void:
 	if(life <= 0):
 		SceneTransition.transition()
 		await SceneTransition.on_transition_finished
-		MusicPlayer.play_FX(load(""))
+		MusicPlayer.play_FX(load("res://audio/FX/die.mp3"))
 		get_tree().change_scene_to_file("res://menu/game_over.tscn")
 
 
