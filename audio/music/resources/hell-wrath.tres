@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AudioResource" load_steps=3 format=3 uid="uid://5unitow4sm5g"]
 
-[ext_resource type="Script" path="res://audio/audio_resource.gd" id="1_78lcu"]
+[ext_resource type="Script" uid="uid://psalp28hdqy" path="res://audio/audio_resource.gd" id="1_78lcu"]
 [ext_resource type="AudioStream" uid="uid://bnukukd6j82gh" path="res://audio/music/hell-wrath.wav" id="1_ij1nd"]
 
 [resource]

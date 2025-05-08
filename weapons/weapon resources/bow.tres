@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://cnb1l186mmxkb"]
 
-[ext_resource type="Script" path="res://weapons/weapon_resource.gd" id="1_4wx4l"]
+[ext_resource type="Script" uid="uid://2wkan1fhmdc0" path="res://weapons/weapon_resource.gd" id="1_4wx4l"]
 [ext_resource type="PackedScene" uid="uid://cfkaovhnavntw" path="res://weapons/weapon pickups/bow.tscn" id="2_w5kro"]
 
 [resource]

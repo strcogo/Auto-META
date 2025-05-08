@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3jiypd3qrv7e"]
+[gd_scene load_steps=5 format=3 uid="uid://b3jiypd3qrv7e"]
 
-[ext_resource type="Script" path="res://dialogues/text_box.gd" id="1_40kia"]
-[ext_resource type="FontFile" uid="uid://kwc3mgvbjnt7" path="res://fonts/home-video.ttf" id="2_in5sv"]
+[ext_resource type="Script" uid="uid://dkisghbke3dt3" path="res://dialogues/text_box.gd" id="1_40kia"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxp5v"]
 bg_color = Color(0, 0, 0, 1)
@@ -10,6 +9,12 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_xi5av"]
+metadata/__load_path__ = "res://fonts/home-video.ttf"
+
+[sub_resource type="Resource" id="Resource_v12iw"]
+metadata/__load_path__ = "res://fonts/home-video.ttf"
 
 [node name="TextBox" type="CanvasLayer"]
 script = ExtResource("1_40kia")
@@ -50,7 +55,7 @@ custom_minimum_size = Vector2(1071, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("2_in5sv")
+theme_override_fonts/font = SubResource("Resource_xi5av")
 theme_override_font_sizes/font_size = 50
 text = "Placeholder"
 autowrap_mode = 3
@@ -61,7 +66,7 @@ visible_ratio = 0.0
 [node name="End" type="Label" parent="TextBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_in5sv")
+theme_override_fonts/font = SubResource("Resource_v12iw")
 theme_override_font_sizes/font_size = 25
 text = "v
 "

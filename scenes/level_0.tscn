@@ -1,11 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://ubctyklsaq7j"]
 
 [ext_resource type="PackedScene" uid="uid://fhs47nerrpl3" path="res://scenes/rooms/default_room/default_room.tscn" id="1_jofxg"]
-[ext_resource type="PackedScene" uid="uid://26wftcjjyc03" path="res://scenes/rooms/entrance_rooms/room01.blend" id="2_u3e25"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_f1nl8"]
 vertices = PackedVector3Array(5.4375, 0.5, 10.5, 6.6875, 0.5, 10.5, 6.6875, 0.5, 8, 5.1875, 0.5, 7.75, 7.4375, 0.5, 7.75, 7.4375, 0.5, -7.25, -7.3125, 0.5, -7.25, -7.3125, 0.5, 7.75, -5.3125, 0.5, -7.25, -6.3125, 0.5, -7.5, -5.3125, 0.5, -10.5, -6.3125, 0.5, -10.5)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7), PackedInt32Array(11, 10, 9), PackedInt32Array(9, 10, 8), PackedInt32Array(7, 8, 3), PackedInt32Array(3, 8, 5)]
+
+[sub_resource type="Resource" id="Resource_7wnc2"]
+metadata/__load_path__ = "res://scenes/rooms/entrance_rooms/room01.blend"
 
 [node name="Level0" instance=ExtResource("1_jofxg")]
 
@@ -17,4 +19,4 @@ cell_size = Vector3(1, 0.5, 1)
 cell_center_y = false
 cell_scale = 0.5
 
-[node name="room01" parent="NavigationRegion3D" index="1" instance=ExtResource("2_u3e25")]
+[node name="room01" parent="NavigationRegion3D" index="1"]

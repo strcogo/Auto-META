@@ -1,6 +1,6 @@
 [gd_scene load_steps=43 format=4 uid="uid://dj8xr10gn4lrw"]
 
-[ext_resource type="Script" path="res://scenes/rooms/utility/door.gd" id="1_dy2bo"]
+[ext_resource type="Script" uid="uid://cyo58115qpb48" path="res://scenes/rooms/utility/door.gd" id="1_dy2bo"]
 [ext_resource type="Texture2D" uid="uid://dlmude7jnd0ow" path="res://scenes/rooms/utility/t_wallbricks.png" id="2_urbwr"]
 [ext_resource type="Texture2D" uid="uid://oj3du7ksv83o" path="res://scenes/rooms/utility/t_rock.png" id="3_6oij1"]
 [ext_resource type="Texture2D" uid="uid://bqchveohanpfp" path="res://enemies/harpy/t_flesh.jpg" id="3_ha0x6"]
@@ -64,9 +64,9 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_s
 
 uniform sampler2D Albedo : filter_nearest;
 uniform sampler2D tex_frg_4;
-uniform float Strength = 1;
+uniform float Strength = 1.0;
 uniform vec4 LightColor : source_color = vec4(0.397482, 0.000000, 0.000000, 1.000000);
-uniform float Progress : hint_range(-3, 1) = 1;
+uniform float Progress : hint_range(-3.0, 1.0) = 1.0;
 
 
 
@@ -168,10 +168,10 @@ nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 0, 0, 0, 4, 0, 0, 1
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2seae"]
 render_priority = 0
 shader = SubResource("VisualShader_liewm")
+shader_parameter/Albedo = ExtResource("3_ha0x6")
 shader_parameter/Strength = 2.0
 shader_parameter/LightColor = Color(0.670588, 0, 0, 1)
 shader_parameter/Progress = 1.0
-shader_parameter/Albedo = ExtResource("3_ha0x6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0og6t"]
 resource_name = "m_porta"
@@ -435,7 +435,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 5.69427, 3.63097, 5.69427, 0.0333333, 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v14io"]
 _data = {
-"travaAction": SubResource("Animation_char7")
+&"travaAction": SubResource("Animation_char7")
 }
 
 [node name="Door" type="StaticBody3D"]

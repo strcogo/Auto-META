@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://bi6fpms7e6dnc"]
 
-[ext_resource type="Script" path="res://enemies/enemy_base/enemy_test.gd" id="1_xdt8e"]
+[ext_resource type="Script" uid="uid://c1exp7fkahpkl" path="res://enemies/enemy_base/enemy_test.gd" id="1_xdt8e"]
 [ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_qwbuh"]
-[ext_resource type="Script" path="res://combat_scripts/hitbox.gd" id="3_ikdhy"]
+[ext_resource type="Script" uid="uid://c1vrdwu6oce81" path="res://combat_scripts/hitbox.gd" id="3_ikdhy"]
 [ext_resource type="ArrayMesh" uid="uid://dea2v470qjkm3" path="res://enemies/enemy_base/untitled.obj" id="4_65oj6"]
-[ext_resource type="Script" path="res://combat_scripts/hurtbox.gd" id="5_1vav6"]
+[ext_resource type="Script" uid="uid://bx358rlf2yr8d" path="res://combat_scripts/hurtbox.gd" id="5_1vav6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcacr"]
 radius = 1.03542
@@ -142,10 +142,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_77nqu"]
 _data = {
-"RESET": SubResource("Animation_ie6en"),
-"damage": SubResource("Animation_02ncg"),
-"hit": SubResource("Animation_ypc8f"),
-"reset": SubResource("Animation_gsuq4")
+&"RESET": SubResource("Animation_ie6en"),
+&"damage": SubResource("Animation_02ncg"),
+&"hit": SubResource("Animation_ypc8f"),
+&"reset": SubResource("Animation_gsuq4")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lg6ld"]

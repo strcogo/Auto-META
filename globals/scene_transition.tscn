@@ -1,6 +1,21 @@
 [gd_scene load_steps=6 format=3 uid="uid://fwfp0ltvn8o2"]
 
-[ext_resource type="Script" path="res://globals/scene_transition.gd" id="1_5h7uf"]
+[ext_resource type="Script" uid="uid://61afkvsdct4f" path="res://globals/scene_transition.gd" id="1_5h7uf"]
+
+[sub_resource type="Animation" id="Animation_o4cv3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_gxj6m"]
 resource_name = "fade_to_black"
@@ -16,21 +31,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_o4cv3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_d28r1"]
@@ -52,9 +52,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dgpxq"]
 _data = {
-"RESET": SubResource("Animation_o4cv3"),
-"fade_to_black": SubResource("Animation_gxj6m"),
-"unfade": SubResource("Animation_d28r1")
+&"RESET": SubResource("Animation_o4cv3"),
+&"fade_to_black": SubResource("Animation_gxj6m"),
+&"unfade": SubResource("Animation_d28r1")
 }
 
 [node name="SceneTransition" type="CanvasLayer"]

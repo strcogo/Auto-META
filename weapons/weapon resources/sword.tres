@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://bv4u2esk5do41"]
 
-[ext_resource type="Script" path="res://weapons/weapon_resource.gd" id="1_047w3"]
+[ext_resource type="Script" uid="uid://2wkan1fhmdc0" path="res://weapons/weapon_resource.gd" id="1_047w3"]
 [ext_resource type="PackedScene" uid="uid://caoeweypfocuw" path="res://weapons/weapon pickups/sword.tscn" id="2_ho2ay"]
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccwc3oqqw637p"]
 
-[ext_resource type="Script" path="res://combat_scripts/playerhitbox.gd" id="1_fj3fs"]
+[ext_resource type="Script" uid="uid://cmiyg8pwtixrx" path="res://combat_scripts/playerhitbox.gd" id="1_fj3fs"]
 [ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_wxpkc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qree4"]

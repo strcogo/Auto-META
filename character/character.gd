@@ -6,15 +6,19 @@ extends CharacterBody3D
 @onready var cursor_camera: Camera3D = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D2
 @onready var cursor: MeshInstance3D = $Cursor
 @onready var anim: AnimationPlayer = $Pivot/bartolomeu/AnimationPlayer
-@onready var anim2: AnimationPlayer = $Pivot/bartolomeu2/AnimationPlayer
 
 @export var speed = 10
 @export var life = 10
+@export var jump_velocity = 25
+@export var max_jumps = 2
+
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var target_velocity = Vector3.ZERO
 var dash_speed = speed * 5
 var dash_lenght = .1
 var is_attacking = false
 var cursor_pos
+var left_jumps = max_jumps
 
 
 func _ready() -> void:
@@ -26,45 +30,44 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	cursor_camera.global_transform = camera.global_transform
 	
+	if(!is_on_floor() and !is_attacking):
+		target_velocity.y -= gravity * delta
+	
+	if(is_on_floor()):
+		left_jumps = max_jumps
+	
 	var direction = Vector3.ZERO
 	var last_direction = Vector3.ZERO
 	_look_at_cursor()
 	
 	if(!anim.is_playing()):
-		anim2.play("idle")
 		anim.play("idle")
 	
 	if(!is_attacking):
 		if(Input.is_action_pressed("move_up")):
-			anim2.play("walk")
 			anim.play("walk")
 			direction.x += 1
 			direction.z += 1
 		if(Input.is_action_pressed("move_down")):
-			anim2.play("walk")
 			anim.play("walk")
 			direction.x -= 1
 			direction.z -= 1
 		if(Input.is_action_pressed("move_right")):
-			anim2.play("walk")
 			anim.play("walk")
 			direction.z += 1
 			direction.x -= 1
 		if(Input.is_action_pressed("move_left")):
-			anim2.play("walk")
 			anim.play("walk")
 			direction.z -= 1
 			direction.x += 1
 	
 	if(Input.get_vector("move_left", "move_right", "move_up", "move_down") == Vector2(0, 0) and !is_attacking):
 		anim.play("idle")
-		anim2.play("idle")
 	
 
 	if(Input.is_action_just_pressed("attack")):
 		$Pivot.look_at(cursor_pos, Vector3.UP)
 		is_attacking = true
-		anim2.play("hit")
 		anim.play("hit")
 		await anim.animation_finished
 		is_attacking = false
@@ -79,6 +82,9 @@ func _physics_process(delta) -> void:
 	if(!is_attacking):
 		target_velocity.x = direction.x * target_speed
 		target_velocity.z = direction.z * target_speed
+		if(Input.is_action_just_pressed("jump") and left_jumps > 0):
+			left_jumps -= 1
+			target_velocity.y = jump_velocity
 		velocity = target_velocity
 		move_and_slide()
 

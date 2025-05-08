@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dovv1kx4g7t8h"]
 
 [ext_resource type="PackedScene" uid="uid://cplrfvofy4ip" path="res://enemies/harpy/Guepyia.blend" id="1_av3hv"]
-[ext_resource type="Script" path="res://combat_scripts/hitbox.gd" id="2_rl1in"]
+[ext_resource type="Script" uid="uid://c1vrdwu6oce81" path="res://combat_scripts/hitbox.gd" id="2_rl1in"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4dhdl"]
 

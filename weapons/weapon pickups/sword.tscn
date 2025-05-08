@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://caoeweypfocuw"]
 
-[ext_resource type="Script" path="res://weapons/weapon_pickup.gd" id="1_qiiqk"]
+[ext_resource type="Script" uid="uid://dn2gfgp5gtllp" path="res://weapons/weapon_pickup.gd" id="1_qiiqk"]
 [ext_resource type="PackedScene" uid="uid://li81bdci00pb" path="res://weapons/weapon pickups/models/sword.glb" id="2_8yapy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4cyap"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcjebjwfwkxup"]
 
-[ext_resource type="Script" path="res://menu/demo_final.gd" id="1_3ox4p"]
+[ext_resource type="Script" uid="uid://8jn4q0ltq2sg" path="res://menu/demo_final.gd" id="1_3ox4p"]
 [ext_resource type="Theme" uid="uid://betfw0hrjb61w" path="res://fonts/themes/button_theme.tres" id="1_sxpau"]
 
 [node name="DemoFinal" type="Control"]
