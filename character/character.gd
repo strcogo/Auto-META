@@ -13,7 +13,9 @@ extends CharacterBody3D
 @export var iframes_duration = 0.1
 @export var dodge_cooldown = 1.0
 @export var dodge_speed = 15.0
-
+@export var wall_slide_gravity = 2.0
+@export var wall_jump_horizontal_force = 8.0
+@export var wall_stick_time = 0.3
 
 var press_ticker = 0.0
 
@@ -29,6 +31,8 @@ var is_dodging = false
 var can_dodge = true
 var is_invincible = false
 
+var is_wall_sliding = false
+var wall_normal = Vector3.ZERO
 
 func _ready() -> void:
 	health_bar.init_health(life)
@@ -53,9 +57,18 @@ func start_dodge():
 
 
 func _physics_process(delta) -> void:
-	
+			
+	if(is_on_wall_only()):
+		wall_normal = get_wall_normal()
+		if(last_direction.dot(-wall_normal) > 0.5):
+			target_velocity.y = -wall_slide_gravity
+			is_wall_sliding = true
+		else:
+			is_wall_sliding = false
+			
 	if(!is_on_floor() and !is_attacking):
-		target_velocity.y -= gravity * delta
+		var actual_gravity = wall_slide_gravity if is_wall_sliding else gravity
+		target_velocity.y -= actual_gravity * delta
 	
 	if(is_on_floor()):
 		left_jumps = max_jumps
@@ -65,7 +78,7 @@ func _physics_process(delta) -> void:
 	if(!anim.is_playing()):
 		anim.play("idle")
 	
-	if(!is_attacking and !$Dash.is_dashing()):
+	if(!is_attacking and !$Dash.is_dashing() and !is_dodging and !is_wall_sliding):
 		if(Input.is_action_pressed("move_up")):
 			anim.play("walk")
 			direction.x += 1
@@ -124,29 +137,38 @@ func _physics_process(delta) -> void:
 	target_speed = dodge_speed if is_dodging else speed
 	if(direction == Vector3(0, 0, 0) and ($Dash.is_dashing() or is_dodging)):
 		direction = last_direction
+		
+	if(!is_attacking and Input.is_action_just_pressed("jump") and left_jumps > 0):
+		if(!is_wall_sliding):
+			left_jumps -= 1
+			target_velocity.y = jump_velocity
+		else:
+			target_velocity.y = jump_velocity
+			direction += wall_normal
+			is_wall_sliding = false
+			left_jumps = 1
 	
 	target_velocity.x = direction.x * target_speed
 	target_velocity.z = direction.z * target_speed
+	print(target_velocity, direction)
 	velocity = target_velocity
-		
-	if(!is_attacking and Input.is_action_just_pressed("jump") and left_jumps > 0):
-		left_jumps -= 1
-		target_velocity.y = jump_velocity
+	
 	move_and_slide()
 
 
 func take_damage(amount: float) -> void:
-	Hitstop.hit_stop(amount / 10)
-	MusicPlayer.play_FX(load("res://audio/FX/damage.mp3"))
-	$CameraPivot/Camera.add_duration(amount / 10)
-	life -= amount
-	health_bar._set_life(life)
-	health_bar.life = life
-	if(life <= 0):
-		SceneTransition.transition()
-		await SceneTransition.on_transition_finished
-		MusicPlayer.play_FX(load("res://audio/FX/die.mp3"))
-		get_tree().change_scene_to_file("res://menu/game_over.tscn")
+	if(!is_invincible):
+		Hitstop.hit_stop(amount / 10)
+		MusicPlayer.play_FX(load("res://audio/FX/damage.mp3"))
+		$CameraPivot/Camera.add_duration(amount / 10)
+		life -= amount
+		health_bar._set_life(life)
+		health_bar.life = life
+		if(life <= 0):
+			SceneTransition.transition()
+			await SceneTransition.on_transition_finished
+			MusicPlayer.play_FX(load("res://audio/FX/die.mp3"))
+			get_tree().change_scene_to_file("res://menu/game_over.tscn")
 
 
 func player() -> void:

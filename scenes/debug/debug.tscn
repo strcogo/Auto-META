@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://delg0vmq2veqt"]
+[gd_scene load_steps=8 format=3 uid="uid://delg0vmq2veqt"]
 
 [ext_resource type="PackedScene" uid="uid://fhs47nerrpl3" path="res://scenes/rooms/default_room/default_room.tscn" id="1_6tgrg"]
+[ext_resource type="PackedScene" uid="uid://5q71hgr5quhp" path="res://enemies/harpy/harpy.tscn" id="2_fym4n"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_yfqpk"]
 vertices = PackedVector3Array(9.5, 0.385844, 9.5, 9.5, 0.385844, 3.25, 8.75, 0.385844, 3, -9.5, 0.385844, 9.5, 8.75, 0.385844, -2.75, 9.5, 0.385844, -3, 9.5, 0.385844, -9.5, -9.5, 0.385844, -9.5, 9.75, 5.38584, -2, 9.75, 5.38584, 2, 14, 5.38584, 2, 14, 5.38584, -2)
@@ -53,3 +54,5 @@ mesh = SubResource("BoxMesh_kfclf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D3" index="1"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 11.8884, 2.38584, 0)
 shape = SubResource("ConcavePolygonShape3D_fym4n")
+
+[node name="Harpy" parent="." index="7" instance=ExtResource("2_fym4n")]
