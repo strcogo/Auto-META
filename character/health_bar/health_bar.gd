@@ -2,8 +2,6 @@ extends ProgressBar
 
 @onready var timer = $Timer
 @onready var damage_bar = $DamageBar
-@onready var label = $Label
-
 var life = 0 : set = _set_life
 
 
@@ -20,7 +18,6 @@ func _set_life(new_life):
 		max_value = new_life
 	life = min(max_value, new_life)
 	value = life
-	label.text = str(value) + "/" + str(max_value)
 	timer.start()
 	
 

@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://betfw0hrjb61w"]
 
-[ext_resource type="FontFile" uid="uid://d3hnvkdpbxg3x" path="res://fonts/times new roman bold.ttf" id="1_24pvl"]
+[ext_resource type="FontFile" uid="uid://dcu5vuqeb3kph" path="res://fonts/Alkhemikal.ttf" id="1_x1gbc"]
 [ext_resource type="FontFile" uid="uid://8x2mi4nbmwue" path="res://fonts/times new roman.ttf" id="2_0bmdx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfbec"]
@@ -45,7 +45,7 @@ Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 32
-Button/fonts/font = ExtResource("1_24pvl")
+Button/fonts/font = ExtResource("1_x1gbc")
 Button/styles/disabled = SubResource("StyleBoxFlat_vfbec")
 Button/styles/focus = SubResource("StyleBoxFlat_nly3t")
 Button/styles/hover = SubResource("StyleBoxFlat_7bdf5")
