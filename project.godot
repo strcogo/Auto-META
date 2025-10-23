@@ -23,7 +23,7 @@ MusicPlayer="*res://globals/music_player.tscn"
 
 [display]
 
-window/size/viewport_width=640
+window/size/viewport_width=854
 window/size/viewport_height=480
 window/size/mode=3
 window/size/resizable=false

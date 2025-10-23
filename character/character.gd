@@ -40,6 +40,7 @@ var is_lunging = false
 
 var left_jumps = max_jumps
 var can_jump = true
+var is_jumping = false
 
 var is_dodging = false
 var can_dodge = true
@@ -137,12 +138,13 @@ func _physics_process(delta: float) -> void:
 	
 	# Reset jump count if the character is on the floor
 	if(is_on_floor()):
+		is_jumping = false
 		left_jumps = max_jumps
 	
 	handle_movement()
 
 	# Idle animation handling
-	if(Input.get_vector("move_left", "move_right", "move_up", "move_down") == Vector2(0, 0) and !is_attacking):
+	if(Input.get_vector("move_left", "move_right", "move_up", "move_down") == Vector2(0, 0) and !is_attacking and !is_jumping):
 		anim.play("idle")
 
 	# Last direction handling for dodge and attack to go in the right direction
@@ -167,6 +169,8 @@ func _physics_process(delta: float) -> void:
 
 	# Jump handling
 	if(!is_attacking and Input.is_action_just_pressed("jump") and left_jumps > 0):
+		is_jumping = true
+		anim.play("jump_from_idle")
 		left_jumps -= 1
 		target_velocity.y = jump_velocity
 	
